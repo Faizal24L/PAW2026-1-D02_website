@@ -2,9 +2,9 @@
     require "validasi.php";
     $errors = [];
 
-    if($_SERVER("REQUET_METHOD") == "POST" ){
-        $username = $_POST['$username'];
-        $password =  $_POST['$password '];
+    if($_SERVER["REQUEST_METHOD"] === "POST" ){
+        $username = $_POST['username'];
+        $password =  $_POST['password'];
 
         valUsername($errors, $username);
         valPassword($errors, $password);
@@ -13,6 +13,8 @@
             echo "anjay";
         }
     }
+
+    var_dump($errors);
 ?>
 
 <!DOCTYPE html>
@@ -26,12 +28,12 @@
 
     <form method="POST" action="login.php">
         <label>Username</label><br>
-        <input type="text" name="username">
-        <br><br>
+        <input type="text" name="username" value="<?= isset($errors['username']) && isset($_POST['username'])? $_POST['username']:""?>">
+        <span style="color:red"><?=$errors['username']??""?></span>
 
-        <label>Password</label><br>
-        <input type="password" name="password">
-        <br><br>
+        <br><label>Password</label><br>
+        <input type="password" name="password" value="<?= isset($errors['password']) && isset($_POST['password'])? $_POST['password']:""?>">
+        <span style="color:red"><?=$errors['password']??""?></span>
 
         <button type="submit">Login</button>
     </form>
