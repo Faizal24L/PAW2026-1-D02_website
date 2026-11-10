@@ -7,7 +7,13 @@
     
     # validasi masukan format alfabet untuk username
     function valUsername($err, $field){
-
+        $pattern = "/^[a-zA-Z }+$/";
+		
+		if (cekKosong($field)){
+			$errors["username"] = "Username wajib di isi!";
+		}elseif(!preg_match($pattern, $field)){
+			$errors["username"] = "username wajib berupa huruf ";
+		}
     }
 
     #validasi masukan format numerik untuk nomor telepon
