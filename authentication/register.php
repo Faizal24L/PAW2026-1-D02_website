@@ -9,7 +9,7 @@
 
         valUsername($errors, $username);
         valPassword($errors, $password);
-        tanggallahir($errors, $tanggal_lahir);
+        tanggalLahir($errors, $tanggal_lahir);
 
         if(empty($errors)){
             echo "anjay";
@@ -26,7 +26,7 @@
     <title>Login</title>
 </head>
 <body>
-    <h2>Login</h2>
+    <h2>Registrasi</h2>
 
     <form method="POST" action="">
         <label>Username</label><br>
@@ -39,7 +39,7 @@
 
         <label>Tanggal Lahir</label><br>
         <input type="date" name="tanggal_lahir" value="<?= isset($errors['tanggal_lahir']) && isset($_POST['tanggal_lahir'])? $_POST['tanggal_lahir']:""?>">>
-        <span style="color:red"><?=$errors['tanggal_lahir']??""?></span>
+        <span style="color:red"><?=$errors['tanggal Lahir']??""?></span>
 
         <button type="submit">Login</button>
     </form>

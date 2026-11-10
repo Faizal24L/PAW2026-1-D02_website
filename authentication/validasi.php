@@ -40,12 +40,18 @@
 
     // validsi untuk masukan format tanggal untuk tanggal lahir
     function tanggalLahir(&$errors, $field){
-        $pattern = "/^[0-9]{1,2}-[0-9]{1,2}[1-9]{4}$/";
+        $tanggal_lahir = $field;
+        $tahun_sekarang = date("Y");
+        $tahun_lahir = date("Y", strtotime($tanggal_lahir));
+
+        $umur = $tahun_sekarang - $tahun_lahir;
+
+        $pattern = "/^[1-9]{4}-[0-9]{2}-[0-9]{2}$/";
         
         if (cekKosong($field)){
             $errors["tanggal Lahir"] = "tanggal lahir wajib di isi";
-        } elseif(!preg_match($pattern, $field)){
-            $errors["tanggal lahir"] = "tanggal lahir wajib angka";
+        } elseif(!preg_match($pattern, $field) && $umur < 18){
+            $errors["tanggal Lahir"] = "tanggal lahir wajib angka dan umur wajib 18+";
         }
     }
 
