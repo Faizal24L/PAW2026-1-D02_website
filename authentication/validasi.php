@@ -1,5 +1,6 @@
+
 <?php
-	function cekKosong($field){
+    function cekKosong($field){
 		$cek = trim($field);
 		return empty($cek);
 	}
@@ -11,6 +12,7 @@
 
     #validasi masukan format numerik untuk nomor telepon
     function valNomor($err, $field){
+        
 
     }
 
