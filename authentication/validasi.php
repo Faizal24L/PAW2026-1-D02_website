@@ -1,4 +1,9 @@
 <?php
+	function cekKosong($field){
+		$cek = trim($field);
+		return empty($cek);
+	}
+    
     # validasi masukan format alfabet untuk username
     function valUsername($err, $field){
 
