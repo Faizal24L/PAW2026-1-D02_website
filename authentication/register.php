@@ -14,7 +14,24 @@
         tanggalLahir($errors, $tanggal_lahir);
 
         if(empty($errors)){
-            echo "anjay";
+            require "../connection/database.php";
+
+            $sql = "INSERT INTO users (user_name, password, nomer_telp, tanggal_lahir) VALUES
+                      (:username, :password, :nomor_telp, :tanggal_lahir)";
+
+            $query = $dbc -> prepare($sql);
+
+            $query->bindValue(":username", $username);
+            $query->bindValue(":password", $password);
+            $query->bindValue(":nomor_telp", $nomor);
+            $query->bindValue(":tanggal_lahir", $tanggal_lahir);
+
+            $query->execute();
+
+            $username = $_POST["username"];
+            $password = $_POST["pass$password"];
+            $nomor_telp = $_POST["nomo$nomor_telp"];
+            $tanggal_lahir = $_POST["tanggal$tanggal_lahir"];
         }
     }
 
