@@ -7,6 +7,7 @@
         $password =  $_POST['password'];
         $nomor =  $_POST['nomor'];
         $tanggal_lahir = $_POST['tanggal_lahir'];
+        $id_role = $_POST["id_role"];
 
         valUsername($errors, $username);
         valPassword($errors, $password);
@@ -16,22 +17,20 @@
         if(empty($errors)){
             require "../connection/database.php";
 
-            $sql = "INSERT INTO users (user_name, password, nomer_telp, tanggal_lahir) VALUES
-                      (:username, :password, :nomor_telp, :tanggal_lahir)";
+            $sql = "INSERT INTO users (id_role, username, password, telepon, tanggal_lahir) VALUES
+                      (:id_role, :username, SHA2(:password, 256), :telepon, :tanggal_lahir)";
 
             $query = $dbc -> prepare($sql);
 
             $query->bindValue(":username", $username);
             $query->bindValue(":password", $password);
-            $query->bindValue(":nomor_telp", $nomor);
+            $query->bindValue(":telepon", $nomor);
             $query->bindValue(":tanggal_lahir", $tanggal_lahir);
+            $query->bindValue(":id_role", $id_role);
 
             $query->execute();
 
-            $username = $_POST["username"];
-            $password = $_POST["pass$password"];
-            $nomor_telp = $_POST["nomo$nomor_telp"];
-            $tanggal_lahir = $_POST["tanggal$tanggal_lahir"];
+            
         }
     }
 
@@ -63,6 +62,13 @@
         <br><label>Tanggal Lahir</label><br>
         <input type="date" name="tanggal_lahir" value="<?= isset($errors['tanggal_lahir']) && isset($_POST['tanggal_lahir'])? $_POST['tanggal_lahir']:""?>">
         <span style="color:red"><?=$errors['tanggal Lahir']??""?></span>
+
+        <br>
+        <label for="id_role">Pilih Role:</label>
+        <select name="id_role">
+            <option value="1">User</option>
+            <option value="2">Pakar</option>
+        </select>
 
         <br><button type="submit">Login</button>
     </form>

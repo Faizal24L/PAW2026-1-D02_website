@@ -29,7 +29,7 @@
 
     // validasi masukan format password
     function valPassword(&$errors, $field){
-        $pattern = "/^[0-9A-Za-z!@#$%^&*]{8,}$/";
+        $pattern = "/^[0-9A-Za-z!@#$%^&*]{8,15}$/";
 
         if (cekKosong($field)){
             $errors["password"] = "password wajib di isi";
