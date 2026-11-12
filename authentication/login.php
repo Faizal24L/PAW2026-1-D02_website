@@ -14,10 +14,11 @@
 
             $hashedInputPassword = hash('sha256', $password);
 
-            $sql = "SELECT username, password, id_role FROM users WHERE username = :username AND password = $hashedInputPassword";
+            $sql = "SELECT username, password, id_role FROM users WHERE username = :username AND password = :password";
             $query = $dbc -> prepare($sql);
 
             $query->bindValue(":username", $username);
+            $query->bindValue(":password", $hashedInputPassword);
 
             $query->execute();
             

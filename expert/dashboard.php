@@ -11,6 +11,6 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="../authentication/login.php">lOGOUT</a>
+    <a href="../authentication/logout.php">lOGOUT</a>
 </body>
 </html>
