@@ -1,3 +1,9 @@
+<?php
+    require "../connection/permission.php";
+    echo "berjalan";
+    require "database.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +12,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>halaman private buat client</h1>
+    <h1>halaman expert</h1>
+    <a href="../authentication/logout.php">lOGOUT</a>
 </body>
 </html>

@@ -29,11 +29,11 @@
             if ($user && $hashedInputPassword){
                 if ($user["id_role"] == 2){
                     $_SESSION["isExpert"] = true;
-                    header("Location: /PAW2026-1-D02_website/expert/dashboard.php");
+                    header("Location: /PAW2026-1-D02_website/expert/dashboard_expert.php");
                     exit();
                 }else{
                     $_SESSION["isClient"] = true;
-                    header("Location: ../client/dashboard.php");
+                    header("Location: ../client/dashboard_client.php");
                     exit();
                 }
             } else {

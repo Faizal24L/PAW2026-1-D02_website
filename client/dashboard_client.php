@@ -1,6 +1,7 @@
 <?php
     require "../connection/permission.php";
     echo "berjalan";
+    require "database.php";
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +12,6 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="../authentication/logout.php">lOGOUT</a>
+    <h1>halaman private buat client</h1>
 </body>
 </html>
