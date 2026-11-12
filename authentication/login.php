@@ -12,27 +12,31 @@
         if(empty($errors)){
             require "../connection/database.php";
 
-            $sql = "SELECT username, password, id_role FROM users WHERE username = :username";
+            $hashedInputPassword = hash('sha256', $password);
 
+            $sql = "SELECT username, password, id_role FROM users WHERE username = :username AND password = $hashedInputPassword";
             $query = $dbc -> prepare($sql);
 
             $query->bindValue(":username", $username);
-            // $query->bindValue(":password", $password);
 
             $query->execute();
-            $hashedInputPassword = hash('sha256', $password);
+            
             $user = $query->fetch();
 
             session_start();
             var_dump($user);
-            if ($user["id_role"] == 2 && $hashedInputPassword){
-                $_SESSION["isExpert"] = true;
-                header("Location: /PAW2026-1-D02_website/expert/dashboard.php");
-                exit();
-            }else{
-                $_SESSION["isClient"] = true;
-                header("Location: ../client/dashboard.php");
-                exit();
+            if ($user && $hashedInputPassword){
+                if ($user["id_role"] == 2){
+                    $_SESSION["isExpert"] = true;
+                    header("Location: /PAW2026-1-D02_website/expert/dashboard.php");
+                    exit();
+                }else{
+                    $_SESSION["isClient"] = true;
+                    header("Location: ../client/dashboard.php");
+                    exit();
+                }
+            } else {
+                $error = "Password atau Username salah";
             }
         }
     }
@@ -59,6 +63,8 @@
 
         <button type="submit">Login</button>
     </form>
+
+    <span><?=$error??""?></span>
 
     <p>Belum punya akun? <a href="register.php">Daftar</a></p>
 </body>
