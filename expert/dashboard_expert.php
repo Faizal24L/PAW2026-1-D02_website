@@ -1,7 +1,7 @@
 <?php
     require "../connection/permission.php";
     echo "berjalan";
-    require "database.php";
+    require "../connection/database.php";
 ?>
 
 <!DOCTYPE html>

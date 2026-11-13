@@ -25,7 +25,6 @@
             $user = $query->fetch();
 
             session_start();
-            var_dump($user);
             if ($user && $hashedInputPassword){
                 if ($user["id_role"] == 2){
                     $_SESSION["isExpert"] = true;
@@ -33,7 +32,7 @@
                     exit();
                 }else{
                     $_SESSION["isClient"] = true;
-                    header("Location: ../client/dashboard_client.php");
+                    header("Location: /PAW2026-1-D02_website/client/dashboard_client.php");
                     exit();
                 }
             } else {
