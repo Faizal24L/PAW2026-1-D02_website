@@ -1,7 +1,7 @@
 <?php
     require "../connection/permission.php";
-    echo "berjalan";
     require "../connection/database.php";
+
     $id_user = $_SESSION["id_user"];
     $sql = "SELECT id_topic, topic FROM topics ORDER BY id_topic DESC";
     $query = $dbc -> prepare($sql);
@@ -19,6 +19,7 @@
     <title>Dashboard</title>
 </head>
 <body>
+    <a href="../authentication/profile.php">PROFILE</a>
     <?php foreach($user as $topic):?>
     <div><a href="./topic_detail.php?id_topic=<?=$topic['id_topic']?>"><?= $topic['topic']?></a></div>
     <?php endforeach;?>
