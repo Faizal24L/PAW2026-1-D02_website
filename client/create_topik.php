@@ -1,20 +1,21 @@
 <?php
     require "../connection/permission.php";
-    echo "berjalan";
-    require "database.php";
-    if($_SERVER["REQUEST_METHODE"] === "POST"){
-        $topic = $_POST['topic'];
-        if(isset($_POST['submit'])){
-            require "../connection/database.php";
+    require "../connection/database.php";
 
-            $sql = "INSERT INTO topics(topic) VALUES (":topic")";
-            $query = $dbc -> prepare($sql); 
-            $query->bindValue(":topic", $topic);
-            $query->execute();
-            
-            $user = $query->fetch();
-            header("Location: ../client/dashboard.php");
-        }
+    if($_SERVER["REQUEST_METHOD"] === "POST"){
+        $topic = $_POST['topic'];
+        $id_user = $_SESSION["id_user"];
+        $id_kategori = $_POST["id_kategori"];
+
+        $sql = "INSERT INTO topics (topic, id_user, id_kategori) VALUES (:topic, :id_user, :id_kategori)";
+        $query = $dbc -> prepare($sql); 
+        $query->bindValue(":topic", $topic);
+        $query->bindValue(":id_user", $id_user);
+        $query->bindValue(":id_kategori", $id_kategori);
+        $query->execute();
+
+        header("Location: ../client/dashboard_client.php");
+        
     }
 ?>
 
@@ -26,10 +27,20 @@
     <title>Create Topict</title>
 </head>
 <body>
-    <form method="POST" action="topic_detail.php">
+    <form method="POST" action="">
         <label>Topik baru</label><br>
         <textarea name="topic"></textarea>
-
+        <br>
+        <label for="id_role">Pilih Role:</label>
+        <select name="id_kategori">
+            <option value="1">penentuan topik</option>
+            <option value="2">Metodologi Penelitian</option>
+            <option value="3">Pengolahan Data</option>
+            <option value="4">Penulisan Ilmiah</option>
+            <option value="5">Referensi dan Sitasi</option>
+            <option value="6">Publikasi Ilmiah</option>
+        </select>
+        <br>
         <button type="submit">kirim</button>
     </form>
 </body>

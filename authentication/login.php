@@ -14,7 +14,7 @@
 
             $hashedInputPassword = hash('sha256', $password);
 
-            $sql = "SELECT username, password, id_role FROM users WHERE username = :username AND password = :password";
+            $sql = "SELECT username, password, id_role, id_user FROM users WHERE username = :username AND password = :password";
             $query = $dbc -> prepare($sql);
 
             $query->bindValue(":username", $username);
@@ -23,15 +23,20 @@
             $query->execute();
             
             $user = $query->fetch();
-
-            session_start();
+            
             if ($user && $hashedInputPassword){
+                session_start();
                 if ($user["id_role"] == 2){
-                    $_SESSION["isExpert"] = true;
+                    // $_SESSION["isExpert"] = true;
+                    $_SESSION["isLogin"] = true;
+                    $_SESSION["id_user"] = $user['id_user'];
                     header("Location: /PAW2026-1-D02_website/expert/dashboard_expert.php");
                     exit();
-                }else{
-                    $_SESSION["isClient"] = true;
+                }else if ($user["id_role"] == 1){
+                    // $_SESSION["isClient"] = true;
+                    $_SESSION["isLogin"] = true;
+                    $_SESSION["id_user"] = $user['id_user'];
+
                     header("Location: /PAW2026-1-D02_website/client/dashboard_client.php");
                     exit();
                 }
@@ -40,7 +45,10 @@
             }
         }
     }
-    var_dump($errors);
+
+    session_start();
+    // var_dump($errors);
+    // var_dump($_SESSION["isLogin"]);
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +71,7 @@
 
         <button type="submit">Login</button>
     </form>
-
+    
     <span><?=$error??""?></span>
 
     <p>Belum punya akun? <a href="register.php">Daftar</a></p>
