@@ -20,9 +20,9 @@
 </head>
 <body>
     <?php foreach($user as $topic):?>
-    <div><a href="./topic_detail.php ? id_topic= <?=$topic['id_topic']?>"><?= $topic['topic']?></a></div>
+    <div><a href="./topic_detail.php?id_topic=<?=$topic['id_topic']?>"><?= $topic['topic']?></a></div>
     <?php endforeach;?>
-    <a href="create_topik.php" ? id_user= <?=$id_user?>>buat topik</a>
+    <a href="create_topik.php?id_user=<?=$id_user?>">buat topik</a>
     <p><a href="../authentication/logout.php">LOGOUT</a></p>
 </body>
 </html>

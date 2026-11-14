@@ -3,7 +3,22 @@
     echo "berjalan";
     require "../connection/database.php";
 
-    $topic = $_GET['id_topic'];
+    $IDtopic = $_GET['id_topic'];
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_topic"])){
+        $new_topic = $_POST["new_topic"];
+        $id_topic = $IDtopic;
+        $id_user = $_SESSION["id_user"];
+
+        $update_sql = "UPDATE topics SET topic = :new_topic WHERE id_topic = :id_topic AND id_user = :id_user";
+        $update = $dbc -> prepare($update_sql);
+        $update -> bindValue(":new_topic", $new_topic);
+        $update -> bindValue(":id_topic", $id_topic);
+        $update -> bindValue(":id_user", $id_user);
+        $update -> execute();
+    }
+
+
 
     $sql = "SELECT topics.topic, replys.reply, topics.id_user
         FROM topics LEFT JOIN replys 
@@ -11,7 +26,7 @@
         WHERE topics.id_topic = :topic";
 
     $query = $dbc -> prepare($sql); 
-    $query->bindValue(":topic", $topic);
+    $query->bindValue(":topic", $IDtopic);
     $query->execute();
     
     $user = $query->fetchAll();
@@ -31,8 +46,10 @@
         
         <!-- Ubah $user menjadi $row (variabel perulangan) -->
         <?php if($row['id_user'] == $_SESSION['id_user']): ?>
-            <h2><?= $row["topic"] ?></h2>
-            <?= "edit" ?>
+            <form action="topic_detail.php?id_topic=<?= $IDtopic ?>" method="POST">
+                <textarea name="new_topic"><?= $row["topic"] ?></textarea>
+                <input type="submit" name="edit_topic" value="edit">
+            </form>
             <!-- Isi string kosong dengan 'reply' -->
             <p><?= $row['reply'] ?></p>
         <?php else: ?>
