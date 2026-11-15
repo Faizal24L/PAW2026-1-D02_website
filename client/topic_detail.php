@@ -16,6 +16,7 @@
         $update -> bindValue(":id_topic", $id_topic);
         $update -> bindValue(":id_user", $id_user);
         $update -> execute();
+        header("location:./dashboard_client.php");
     }
 
 
@@ -42,24 +43,22 @@
 </head>
 <body>
     <h1>topic dan balasannya</h1>
-    <?php foreach($user as $row): ?>
-        
-        <!-- Ubah $user menjadi $row (variabel perulangan) -->
-        <?php if($row['id_user'] == $_SESSION['id_user']): ?>
+
+    <?php if($user[0]['id_user'] == $_SESSION['id_user']): ?>
+            <h2>topic</h2>
             <form action="topic_detail.php?id_topic=<?= $IDtopic ?>" method="POST">
-                <textarea name="new_topic"><?= $row["topic"] ?></textarea>
+                <textarea name="new_topic"><?= $user[0]["topic"] ?></textarea>
                 <input type="submit" name="edit_topic" value="edit">
             </form>
-            <!-- Isi string kosong dengan 'reply' -->
-            <p><?= $row['reply'] ?></p>
         <?php else: ?>
-            <h2><?= $row["topic"] ?></h2>
-            
-            <!-- Isi string kosong dengan 'reply' -->
+            <p>topic</p>
+            <h2><?= $user[0]["topic"] ?></h2>
+    <?php endif; ?>
+    <h2>Balasan</h2>
+    <?php foreach($user as $row): ?>
             <p><?= $row['reply'] ?></p>
-        <?php endif; ?>
-        
     <?php endforeach; ?>
+    <a href="./dashboard_client.php">kembali</a>
     
 </body>
 </html>

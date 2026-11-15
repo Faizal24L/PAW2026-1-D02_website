@@ -3,6 +3,7 @@
     require "../connection/database.php";
 
     $IDtopic = $_GET['id_topic'];
+    $id_user = $_SESSION['id_user'];
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_reply"])){
         $reply = $_POST['reply'];
@@ -11,6 +12,7 @@
         $query = $dbc -> prepare($sql); 
         $query->bindValue(":reply", $reply);
         $query->bindValue(":id_topic", $IDtopic);
+        $query->bindValue(":id_user", $id_user);
         $query->execute();
     }
 
@@ -30,7 +32,7 @@
 
 
 
-    $sql = "SELECT topics.topic, topics.id_user, replys.reply, replys.id_reply
+    $sql = "SELECT topics.topic, replys.id_user, replys.reply, replys.id_reply
         FROM topics LEFT JOIN replys 
         on topics.id_topic = replys.id_topic
         WHERE topics.id_topic = :topic";
@@ -40,6 +42,8 @@
     $query->execute();
     
     $user = $query->fetchAll();
+    var_dump($user);
+    // exit();
 ?>
 
 <!DOCTYPE html>
@@ -51,13 +55,17 @@
 </head>
 <body>
     <h1>topic dan balasannya</h1>
+    <h2><?= $user[0]["topic"] ?></h2>
+    <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
+        <textarea name="reply" placeholder="Tulis balasan..."></textarea>
+        <input type="submit" name="submit_reply" value="kirim">
+    </form>
     <?php foreach($user as $row): ?>
-        <h2><?= $user[0]["topic"] ?></h2>
         <!-- Ubah $user menjadi $row (variabel perulangan) -->
         <?php if(!empty($row['id_reply'])): ?>
             <?php if($row['id_user'] == $_SESSION['id_user']): ?>
                 <!-- Isi string kosong dengan 'reply' -->
-                <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
+                <form action="reply.php" method="POST">
                     <input type="hidden" name="id_reply" value="<?= $row['id_reply'] ?>">
                     <textarea name="new_reply"><?= $row["reply"] ?></textarea>
                     <input type="submit" name="edit_reply" value="edit">
@@ -68,11 +76,6 @@
             <?php endif; ?>
         <?php endif; ?>
     <?php endforeach; ?>
-
-    <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
-        <textarea name="reply" placeholder="Tulis balasan..."></textarea>
-        <input type="submit" name="submit_reply" value="kirim">
-    </form>
 
     <p><a href="./dashboard_expert.php">Kembali ke Dashboard</a></p>
 </body>

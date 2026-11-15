@@ -30,6 +30,8 @@
 
             $query->execute();
 
+            header("location: ./login.php");
+
             
         }
     }

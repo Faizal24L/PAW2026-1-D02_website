@@ -19,6 +19,7 @@
     <title>Dashboard</title>
 </head>
 <body>
+    <a href="../authentication/profile_expert.php">PROFILE</a>
     <?php foreach($user as $topic):?>
     <div><a href="./reply.php?id_topic=<?=$topic['id_topic']?>"><?= $topic['topic']?></a></div>
     <?php endforeach;?>

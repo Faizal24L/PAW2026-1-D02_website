@@ -2,7 +2,7 @@
     require "../connection/permission.php";
     require "../connection/database.php";
     $id_user = $_SESSION["id_user"];
-    if($_SERVER["REQUEST_METHOD"] === "POST"){
+    if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['kirim'])){
         $new_username = $_POST['new_username'];
         $new_telepon = $_POST['new_telepon'];
         $new_tanggal_lahir = $_POST["new_tanggal_lahir"];
@@ -14,9 +14,9 @@
         $query->bindValue(":new_telepon", $new_telepon);
         $query->bindValue(":new_tanggal_lahir", $new_tanggal_lahir);
         $query->execute();
-
-        header("Location: ../client/dashboard_client.php");
         
+        header("Location:./profile_expert.php");
+        exit();
     }
 ?>
 
@@ -29,14 +29,14 @@
 </head>
 <body>
     <h1>KELOLA PROFILE</h1>
-    <form action="./edit_profile.php" method="POST">
+    <form method="POST" action="">
         <label for="new_username">USER NAME: </label>
         <input type="text" name="new_username"><br>
         <label for="new_telepon">TELEPON: </label>
         <input type="text" name="new_telepon"><br>
         <label for="new_tanggal_lahir">TANGGAL LAHIR: </label>
         <input type="date" name="new_tanggal_lahir"><br>
-        <input type="submit">
+        <input type="submit" name="kirim">
 
     </form>
 </body>

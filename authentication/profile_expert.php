@@ -25,6 +25,7 @@
     <p><?= $user["username"]?></p>
     <p><?= $user["telepon"]?></p>
     <p><?= $user["tanggal_lahir"]?></p>
-    <a href="../authentication/edit_profile.php">kelola profile</a>
+    <a href="./edit_profile_expert.php">kelola profile</a>
+    <a href="../expert/dashboard_expert.php">kembali</a>
 </body>
 </html>
