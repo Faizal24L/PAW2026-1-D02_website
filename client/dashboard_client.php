@@ -44,6 +44,7 @@
 </head>
 <body>
     <!-- Lihat Profile -->
+    <!-- Lihat Profile -->
     <a href="../authentication/profile_client.php">PROFILE</a>
 
     <!-- filter kategori -->
@@ -87,6 +88,8 @@
     <?php endif; ?>
     <!-- ke Halaman membuat topik -->
     <a href="create_topik.php?id_user=<?=$id_user?>">buat topik</a>
+
+    <!-- ke Halaman Logout -->
 
     <!-- ke Halaman Logout -->
     <p><a href="../authentication/logout.php">LOGOUT</a></p>
