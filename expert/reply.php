@@ -22,6 +22,7 @@
 
         $update_sql = "UPDATE replys SET reply = :new_reply 
                 WHERE id_topic = :id_topic 
+                AND id_user = :id_user
                 AND id_reply = :id_reply";
         $update = $dbc -> prepare($update_sql);
         $update -> bindValue(":new_reply", $new_reply);
@@ -65,7 +66,7 @@
         <?php if(!empty($row['id_reply'])): ?>
             <?php if($row['id_user'] == $_SESSION['id_user']): ?>
                 <!-- Isi string kosong dengan 'reply' -->
-                <form action="reply.php" method="POST">
+                <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
                     <input type="hidden" name="id_reply" value="<?= $row['id_reply'] ?>">
                     <textarea name="new_reply"><?= $row["reply"] ?></textarea>
                     <input type="submit" name="edit_reply" value="edit">
