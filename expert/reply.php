@@ -1,5 +1,5 @@
 <?php
-    require "../connection/permission.php";
+    require "../connection/permission_expert.php";
     require "../connection/database.php";
 
     $IDtopic = $_GET['id_topic'];
@@ -43,7 +43,7 @@
     $query->execute();
     
     $user = $query->fetchAll();
-    var_dump($user);
+    // var_dump($user);
     // exit();
 ?>
 
@@ -67,13 +67,13 @@
             <?php if($row['id_user'] == $_SESSION['id_user']): ?>
                 <!-- Isi string kosong dengan 'reply' -->
                 <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
-                    <input type="hidden" name="id_reply" value="<?= $row['id_reply'] ?>">
-                    <textarea name="new_reply"><?= $row["reply"] ?></textarea>
+                    <input type="hidden" name="id_reply" value="<?= htmlspecialchars($row['id_reply']) ?>">
+                    <textarea name="new_reply"><?= htmlspecialchars($row["reply"]) ?></textarea>
                     <input type="submit" name="edit_reply" value="edit">
                 </form>
             <?php else: ?>
                 <!-- Isi string kosong dengan 'reply' -->
-                <p><?= $row['reply'] ?></p>
+                <p><?= htmlspecialchars($row['reply']) ?></p>
             <?php endif; ?>
         <?php endif; ?>
     <?php endforeach; ?>

@@ -2,7 +2,7 @@
     require "validasi.php";
     $errors = [];
 
-    if($_SERVER["REQUEST_METHOD"] === "POST" ){
+    if($_SERVER["REQUEST_METHOD"] === "POST"){
         $username = $_POST['username'];
         $password =  $_POST['password'];
         $nomor =  $_POST['nomor'];
@@ -54,7 +54,7 @@
         <span style="color:red"><?=$errors['username']??""?></span>
 
         <br><label>Password</label><br>
-        <input type="text" name="password" value="<?= isset($errors['password']) && isset($_POST['password'])? $_POST['password']:""?>">
+        <input type="password" name="password" value="<?= isset($errors['password']) && isset($_POST['password'])? $_POST['password']:""?>">
         <span style="color:red"><?=$errors['password']??""?></span>
 
         <br><label>npmer Telepon</label><br>

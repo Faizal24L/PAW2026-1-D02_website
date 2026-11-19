@@ -1,5 +1,5 @@
 <?php
-    require "../connection/permission.php";
+    require "../connection/permission_expert.php";
     require "../connection/database.php";
 
 
@@ -71,25 +71,14 @@
     <a href="../authentication/profile_expert.php">PROFILE</a>
 
     <!-- filter kategori -->
-    <form action="dashboard_expert.php" method="GET">
-        <label for="kategori">kategori</label>
-        <select name="kategori">
-            <option value="">semua kategori</option>
-            <?php foreach($kategori as $kat): ?>
-                <option value="<?= $kat['id_kategori'] ?>"><?= $kat['kategori']?></option>
-            <?php endforeach; ?>
-        </select>
-        <button type="submit">filter</button>
-    </form>
-
-    <br>
+    
 
     <!-- daftar topik -->
     <?php if (count($topik) > 0): ?>
         <?php foreach ($topik as $top): ?>
             <?php if ($top['id_user'] == $_SESSION['id_user']):?>
                     <div>
-                        <a href="./reply.php?id_topic=<?= $top['id_topic'] ?>"><?= $top['topic'] ?></a>
+                        <a href="./reply.php?id_topic=<?= $top['id_topic'] ?>"><?= htmlspecialchars($top['topic']) ?></a>
                     </div>
                 <?php endif;?>
         <?php endforeach; ?>
@@ -97,11 +86,24 @@
         <p>Belum ada topik pada kategori ini.</p>
     <?php endif; ?>
 
-    <h2>SEMUA TOPIK</h2>
+    <h1>SEMUA TOPIK</h1><br>
+
+    <form action="dashboard_expert.php" method="GET">
+        <label>kategori</label>
+        <select name="kategori">
+            <option value="">semua kategori</option>
+            <?php foreach($kategori as $kat): ?>
+                <option value="<?= $kat['id_kategori'] ?>"><?= htmlspecialchars($kat['kategori'])?></option>
+            <?php endforeach; ?>
+        </select>
+        <button type="submit">filter</button>
+    </form>
+
+    <br>
     <?php if (count($topik) > 0): ?>
         <?php foreach ($topik as $top):?>
             <div>
-                <a href="./reply.php?id_topic=<?= $top['id_topic'] ?>"><?= $top['topic'] ?></a>
+                <a href="./reply.php?id_topic=<?= $top['id_topic'] ?>"><?= htmlspecialchars($top['topic']) ?></a>
             </div>
         <?php endforeach;?>
     <?php else: ?>

@@ -1,5 +1,5 @@
 <?php
-    require "../connection/permission.php";
+    require "../connection/permission_client.php";
     require "../connection/database.php";
 
     $id_user = $_SESSION["id_user"];
@@ -47,27 +47,29 @@
     <!-- Lihat Profile -->
     <a href="../authentication/profile_client.php">PROFILE</a>
 
-    <!-- filter kategori -->
+    
+
+    <!-- daftar topik Diri Sendiri-->
+     <h1>INI TOPIK SAYA</h1><br>
+
+     <!-- filter kategori -->
     <form action="dashboard_client.php" method="GET">
-        <label for="kategori">kategori</label>
+        <label>kategori</label>
         <select name="kategori">
             <option value="">semua kategori</option>
             <?php foreach($kategori as $kat): ?>
-                <option value="<?= $kat['id_kategori'] ?>"><?= $kat['kategori']?></option>
+                <option value="<?= $kat['id_kategori'] ?>"><?= htmlspecialchars($kat['kategori'])?></option>
             <?php endforeach; ?>
         </select>
         <button type="submit">filter</button>
     </form>
-
     <br>
-
-    <!-- daftar topik Diri Sendiri-->
-     <h2>INI TOPIK SAYA</h2>
+    
     <?php if (count($topik) > 0): ?>
         <?php foreach ($topik as $top): ?>
             <?php if ($top['id_user'] == $_SESSION['id_user']):?>
                 <div>
-                    <a href="./topic_detail.php?id_topic=<?= $top['id_topic'] ?>"><?= $top['topic'] ?></a>
+                    <a href="./topic_detail.php?id_topic=<?= $top['id_topic'] ?>"><?= htmlspecialchars($top['topic']) ?></a>
                 </div>
             <?php endif;?>
         <?php endforeach; ?>
@@ -80,7 +82,7 @@
     <?php if (count($topik) > 0): ?>
         <?php foreach ($topik as $top):?>
             <div>
-                <a href="./topic_detail.php?id_topic=<?= $top['id_topic'] ?>"><?= $top['topic'] ?></a>
+                <a href="./topic_detail.php?id_topic=<?= $top['id_topic'] ?>"><?= htmlspecialchars($top['topic']) ?></a>
             </div>
         <?php endforeach;?>
     <?php else: ?>

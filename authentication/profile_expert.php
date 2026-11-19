@@ -1,5 +1,5 @@
 <?php
-    require "../connection/permission.php";
+    require "../connection/permission_expert.php";
     require "../connection/database.php";
 
     $id_user = $_SESSION["id_user"];
@@ -22,9 +22,9 @@
 </head>
 <body>
     <h1>PROFILE</h1>
-    <p><?= $user["username"]?></p>
-    <p><?= $user["telepon"]?></p>
-    <p><?= $user["tanggal_lahir"]?></p>
+    <p>NAMA: <?= htmlspecialchars($user["username"])?></p>
+    <p>NOMOR TELEPON: <?= htmlspecialchars($user["telepon"])?></p>
+    <p>TANGGAL LAHIR: <?= htmlspecialchars($user["tanggal_lahir"])?></p>
     <a href="./edit_profile_expert.php">kelola profile</a>
     <a href="../expert/dashboard_expert.php">kembali</a>
 </body>

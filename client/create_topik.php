@@ -1,5 +1,5 @@
 <?php
-    require "../connection/permission.php";
+    require "../connection/permission_client.php";
     require "../connection/database.php";
 
     if($_SERVER["REQUEST_METHOD"] === "POST"){

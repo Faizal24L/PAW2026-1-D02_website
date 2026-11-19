@@ -6,8 +6,8 @@
         $username = $_POST['username'];
         $password =  $_POST['password'];
 
-        valUsername($errors, $username);
-        valPassword($errors, $password);
+        // valUsername($errors, $username);
+        // valPassword($errors, $password);
 
         if(empty($errors)){
             require "../connection/database.php";
@@ -30,13 +30,14 @@
                     // $_SESSION["isExpert"] = true;
                     $_SESSION["isLogin"] = true;
                     $_SESSION["id_user"] = $user['id_user'];
+                    $_SESSION["id_role"] = $user["id_role"];
                     header("Location: /PAW2026-1-D02_website/expert/dashboard_expert.php");
                     exit();
                 }else if ($user["id_role"] == 1){
                     // $_SESSION["isClient"] = true;
                     $_SESSION["isLogin"] = true;
                     $_SESSION["id_user"] = $user['id_user'];
-
+                    $_SESSION["id_role"] = $user["id_role"];
                     header("Location: /PAW2026-1-D02_website/client/dashboard_client.php");
                     exit();
                 }
@@ -58,7 +59,7 @@
     <title>Login</title>
 </head>
 <body>
-    <h2>Login</h2>
+    <h1>Login</h1>
 
     <form method="POST" action="login.php">
         <label>Username</label><br>

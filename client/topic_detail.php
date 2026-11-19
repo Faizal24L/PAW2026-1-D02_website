@@ -1,5 +1,5 @@
 <?php
-    require "../connection/permission.php";
+    require "../connection/permission_client.php";
     echo "berjalan";
     require "../connection/database.php";
 
@@ -47,16 +47,16 @@
     <?php if($user[0]['id_user'] == $_SESSION['id_user']): ?>
             <h2>topic</h2>
             <form action="topic_detail.php?id_topic=<?= $IDtopic ?>" method="POST">
-                <textarea name="new_topic"><?= $user[0]["topic"] ?></textarea>
+                <textarea name="new_topic"><?= htmlspecialchars($user[0]["topic"]) ?></textarea>
                 <input type="submit" name="edit_topic" value="edit">
             </form>
         <?php else: ?>
             <p>topic</p>
-            <h2><?= $user[0]["topic"] ?></h2>
+            <h2><?= htmlspecialchars($user[0]["topic"]) ?></h2>
     <?php endif; ?>
     <h2>Balasan</h2>
     <?php foreach($user as $row): ?>
-            <p><?= $row['reply'] ?></p>
+            <p><?= htmlspecialchars($row['reply']) ?></p>
     <?php endforeach; ?>
     <a href="./dashboard_client.php">kembali</a>
     
