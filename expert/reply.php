@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require "../connection/permission_expert.php";
     require "../connection/database.php";
 

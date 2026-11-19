@@ -1,14 +1,27 @@
 <?php
-    require "../connection/permission_client.php";
-    require "../connection/database.php";
+    session_start();
     $id_user = $_SESSION["id_user"];
+    $id_role = $_SESSION["id_role"];
+
+    require "../connection/database.php";
+    if ($id_role == 1){
+        require "../connection/permission_client.php";
+    } else {
+        require "../connection/permission_expert.php";
+    }
+
+    
+    echo $id_role;
+
+    
+    // echo $id_role;
 
     $sql_s = "SELECT username, telepon, tanggal_lahir FROM users WHERE id_user = :id_user";
     $query_s = $dbc -> prepare($sql_s);
     $query_s -> bindValue(":id_user", $id_user);
     $query_s -> execute();
     $user = $query_s -> fetch();
-
+    
     if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['kirim'])){
         $new_username = $_POST['new_username'];
         $new_telepon = $_POST['new_telepon'];
@@ -24,8 +37,13 @@
         $query->bindValue(":new_password", $new_password);
         $query->execute();
         
-        header("Location:./profile_client.php");
-        exit();
+        if ($id_role == 1){
+            header("Location:./profile_client.php");
+            exit();
+        } else {
+            header("Location:./profile_expert.php");
+            exit();
+        }
     }
 ?>
 
@@ -38,7 +56,7 @@
 </head>
 <body>
     <h1>KELOLA PROFILE</h1>
-    <form method="POST" action="edit_profile_client.php">
+    <form method="POST" action="edit_profile.php">
         <label>USER NAME: </label>
         <input type="text" name="new_username" value="<?= htmlspecialchars($user["username"]) ?>"><br>
         <label>TELEPON: </label>
@@ -47,7 +65,12 @@
         <input type="date" name="new_tanggal_lahir" value="<?= htmlspecialchars($user["tanggal_lahir"]) ?>"><br>
         <label>PASSWORD: </label>
         <input type="password" name="new_password">
-        <input type="submit" name="kirim">
+        <input type="submit" name="kirim" value="kirim">
     </form>
+    <?php if ($id_role == 1):?>
+        <a href="./profile_client.php">batal</a>
+    <?php else:?>
+        <a href="./profile_expert.php">batal</a>
+    <?php endif;?>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
+    session_start();
     require "../connection/permission_client.php";
-    echo "berjalan";
     require "../connection/database.php";
 
     $IDtopic = $_GET['id_topic'];

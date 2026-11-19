@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	// session_start();
 	$id_role = $_SESSION['id_role'];
 	if (!isset($_SESSION["isLogin"])){
 		// user akan di arahkan ke halaman login untuk authorization
