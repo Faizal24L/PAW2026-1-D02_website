@@ -5,13 +5,13 @@
     if($_SERVER["REQUEST_METHOD"] === "POST"){
         $username = $_POST['username'];
         $password =  $_POST['password'];
-        $nomor =  $_POST['nomor'];
+        $telepon =  $_POST['telepon'];
         $tanggal_lahir = $_POST['tanggal_lahir'];
         $id_role = $_POST["id_role"];
 
         valUsername($errors, $username);
         valPassword($errors, $password);
-        valNomor($errors, $nomor);
+        valNomor($errors, $telepon);
         tanggalLahir($errors, $tanggal_lahir);
 
         if(empty($errors)){
@@ -24,7 +24,7 @@
 
             $query->bindValue(":username", $username);
             $query->bindValue(":password", $password);
-            $query->bindValue(":telepon", $nomor);
+            $query->bindValue(":telepon", $telepon);
             $query->bindValue(":tanggal_lahir", $tanggal_lahir);
             $query->bindValue(":id_role", $id_role);
 
@@ -58,8 +58,8 @@
         <span style="color:red"><?=$errors['password']??""?></span>
 
         <br><label>npmer Telepon</label><br>
-        <input type="text" name="nomor" value="<?= isset($errors['nomor']) && isset($_POST['nomor'])? $_POST['nomor']:""?>">
-        <span style="color:red"><?=$errors['nomor']??""?></span>
+        <input type="text" name="telepon" value="<?= isset($errors['telepon']) && isset($_POST['telepon'])? $_POST['telepon']:""?>">
+        <span style="color:red"><?=$errors['telepon']??""?></span>
 
         <br><label>Tanggal Lahir</label><br>
         <input type="date" name="tanggal_lahir" value="<?= isset($errors['tanggal_lahir']) && isset($_POST['tanggal_lahir'])? $_POST['tanggal_lahir']:""?>">

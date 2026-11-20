@@ -29,6 +29,7 @@
         $update -> bindValue(":new_reply", $new_reply);
         $update -> bindValue(":id_topic", $IDtopic);
         $update -> bindValue(":id_reply", $id_reply);
+        $update -> bindValue(":id_user", $id_user);
         $update -> execute();
     }
 
