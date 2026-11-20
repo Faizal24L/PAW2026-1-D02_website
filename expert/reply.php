@@ -9,7 +9,9 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_reply"])){
         $reply = $_POST['reply'];
 
-        $sql = "INSERT INTO replys (reply, id_topic, id_user) VALUES (:reply, :id_topic, :id_user)";
+        $sql = "INSERT INTO replys (reply, id_topic, id_user) 
+                VALUES (:reply, :id_topic, :id_user)";
+                
         $query = $dbc -> prepare($sql); 
         $query->bindValue(":reply", $reply);
         $query->bindValue(":id_topic", $IDtopic);

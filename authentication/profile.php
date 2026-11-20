@@ -1,7 +1,12 @@
 <?php
     session_start();
-    require "../connection/permission_expert.php";
+    $id_role = $_SESSION["id_role"];
     require "../connection/database.php";
+    if ($id_role == 1){
+        require "../connection/permission_client.php";
+    } else {
+        require "../connection/permission_expert.php";
+    }
 
     $id_user = $_SESSION["id_user"];
     $id_role = $_SESSION["id_role"];
