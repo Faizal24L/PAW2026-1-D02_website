@@ -37,33 +37,38 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <!-- navigasi ke login dan register -->
-    <p><a href="./authentication/register.php">Register</a></p>
-    <p><a href="./authentication/login.php">Login</a></p>
+    <!-- header -->
+    <?php require "../component/header.php"?>
 
-    <!-- filter kategori -->
-    <form action="index.php" method="GET">
-        <label for="kategori">kategori</label>
-        <select name="kategori">
-            <option value="">semua kategori</option>
-            <?php foreach($kategori as $kat): ?>
-                <option value="<?= $kat['id_kategori'] ?>"><?= $kat['kategori']?></option>
+    <!-- content -->
+    <div class="content">
+        <!-- filter kategori -->
+        <form action="index.php" method="GET">
+            <label for="kategori">kategori</label>
+            <select name="kategori">
+                <option value="">semua kategori</option>
+                <?php foreach($kategori as $kat): ?>
+                    <option value="<?= $kat['id_kategori'] ?>"><?= $kat['kategori']?></option>
+                <?php endforeach; ?>
+            </select>
+            <button type="submit">filter</button>
+        </form>
+
+        <br>
+
+        <!-- daftar topik -->
+        <?php if (count($topik) > 0): ?>
+            <?php foreach ($topik as $top): ?>
+            <div>
+                <a href="./authentication/login.php"><?= $top['topic'] ?></a>
+            </div>
             <?php endforeach; ?>
-        </select>
-        <button type="submit">filter</button>
-    </form>
-
-    <br>
-
-    <!-- daftar topik -->
-    <?php if (count($topik) > 0): ?>
-        <?php foreach ($topik as $top): ?>
-        <div>
-            <a href="./authentication/login.php"><?= $top['topic'] ?></a>
-        </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>Belum ada topik pada kategori ini.</p>
-    <?php endif; ?>
+        <?php else: ?>
+            <p>Belum ada topik pada kategori ini.</p>
+        <?php endif; ?>
+    </div>
+    
+    <!-- footer -->
+     <?php require "../component/footer.php"?>
 </body>
 </html>

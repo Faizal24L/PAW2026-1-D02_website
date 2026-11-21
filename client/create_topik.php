@@ -28,6 +28,9 @@
     <title>Create Topict</title>
 </head>
 <body>
+    <!-- header -->
+    <?php require "../component/header.php";?>
+
     <a href="dashboard_client.php">Kembali ke Dashboard</a>
     <h1>Buat Topik Diskusi Baru</h1>
     <span>Tuliskan pertanyaan dengan jelas agar para expert dapat membantu</span>

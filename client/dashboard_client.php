@@ -16,9 +16,13 @@
     <title>Dashboard</title>
 </head>
 <body>
+    <!-- header -->
+    <?php require "../component/header.php";?>
+    
+    <!-- content -->
     <?php require "../connection/dbview.php";?>
 
-    <!-- ke Halaman Logout -->
-    
+    <!-- footer -->
+     <?php require "../component/footer.php";?>
 </body>
 </html>
