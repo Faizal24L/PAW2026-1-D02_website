@@ -37,10 +37,17 @@
 
 
 
-    $sql = "SELECT topics.topic, replys.id_user, replys.reply, replys.id_reply
-        FROM topics LEFT JOIN replys 
-        on topics.id_topic = replys.id_topic
-        WHERE topics.id_topic = :topic";
+    $sql = "SELECT 
+                topics.topic,
+                replys.id_user,
+                replys.reply,
+                replys.id_reply,
+                users.username,
+                categories.kategori
+            FROM topics LEFT JOIN replys ON topics.id_topic = replys.id_topic
+            LEFT JOIN users ON replys.id_user = users.id_user
+            LEFT JOIN categories ON categories.id_kategori = topics.id_kategori
+            WHERE topics.id_topic = :topic";
 
     $query = $dbc -> prepare($sql); 
     $query->bindValue(":topic", $IDtopic);
@@ -59,9 +66,12 @@
     <title>Topic</title>
 </head>
 <body>
-    <h1>topic dan balasannya</h1>
-    <h2><?= $user[0]["topic"] ?></h2>
+    <p><a href="./dashboard_expert.php">Kembali ke Dashboard</a></p>
+
+    <p><?= $user[0]["topic"] ?></p>
+    
     <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
+        <label>Penjelasan / Jawaban Anda Sebagai Expert</label><br>
         <textarea name="reply" placeholder="Tulis balasan..."></textarea>
         <input type="submit" name="submit_reply" value="kirim">
     </form>
@@ -70,6 +80,8 @@
         <?php if(!empty($row['id_reply'])): ?>
             <?php if($row['id_user'] == $_SESSION['id_user']): ?>
                 <!-- Isi string kosong dengan 'reply' -->
+                 <span><?= $row['username']?></span>
+                 <span>Balasan Anda</span>
                 <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
                     <input type="hidden" name="id_reply" value="<?= htmlspecialchars($row['id_reply']) ?>">
                     <textarea name="new_reply"><?= htmlspecialchars($row["reply"]) ?></textarea>
@@ -77,11 +89,10 @@
                 </form>
             <?php else: ?>
                 <!-- Isi string kosong dengan 'reply' -->
+                 <span><?= $row['username']?></span>
                 <p><?= htmlspecialchars($row['reply']) ?></p>
             <?php endif; ?>
         <?php endif; ?>
     <?php endforeach; ?>
-
-    <p><a href="./dashboard_expert.php">Kembali ke Dashboard</a></p>
 </body>
 </html>

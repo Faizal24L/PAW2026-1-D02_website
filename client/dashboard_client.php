@@ -19,6 +19,6 @@
     <?php require "../connection/dbview.php";?>
 
     <!-- ke Halaman Logout -->
-    <p><a href="../authentication/logout.php">LOGOUT</a></p>
+    
 </body>
 </html>

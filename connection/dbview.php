@@ -1,23 +1,20 @@
 <!-- Lihat profile -->
 <a href="../authentication/profile.php">PROFILE</a>
+<p><a href="../authentication/logout.php">LOGOUT</a></p>
 
-<!-- daftar topik sendiri -->
-<?php if($_SESSION['id_role'] == "1"):?>
-    <h1>Topik ku</h1>
-    <?php if (count($topik) > 0): ?>
-        <?php foreach ($topik as $top): ?>
-            <?php if ($top['id_user'] == $_SESSION['id_user']):?>
-                <div>
-                    <a href="../client/topic_detail.php?id_topic=<?= $top['id_topic'] ?>"><?= htmlspecialchars($top['topic']) ?></a>
-                </div>
-            <?php endif;?>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>Belum ada topik pada kategori ini.</p>
-    <?php endif; ?>
-<?php endif;?>
+<div>
+    <h1>Hallo, <?= $_SESSION['username']?></h1>
+    <?php if($_SESSION['id_role'] == 1): ?>
+        <span>Kelola Pertanyaanmu, Jelahi diskusi Pelajar Lain dan Baca Solusi dari Pakar </span>
+    <?php else:?>
+        <span>Bantu para pelajar dengan memberikan jawaban terbaik sesuai bidang keahlianmu. </span>
+    <?php endif;?>
+    <?php if($_SESSION['id_role'] == 1): ?>
+        <a href="../client/create_topik.php?id_user=<?=$id_user?>">+buat topik</a>
+    <?php endif;?>
+</div>
 
-<h1>SEMUA TOPIK</h1><br>
+<h2>SEMUA TOPIK</h2><br>
 
 <!-- filter kategori -->
 <form action="dashboard_expert.php" method="GET">
@@ -38,9 +35,26 @@
         <div>
             <!-- pengarahan ke halaman lanjutan jika klik topik -->
             <?php if($_SESSION['id_role'] == 2): ?>
-				<a href="../expert/reply.php?id_topic=<?= $top['id_topic'] ?>"><?= htmlspecialchars($top['topic']) ?></a>
+                <?php?>
+                    <div>
+                        <span><?= $top["username"]?></span>
+                        <a href="../expert/reply.php?id_topic=<?= $top['id_topic'] ?>"><?= htmlspecialchars($top['topic']) ?></a>
+                    </div>
             <?php else:?>
-				<a href="../client/topic_detail.php?id_topic=<?= $top['id_topic'] ?>"><?= htmlspecialchars($top['topic']) ?></a>
+                <?php if ($_SESSION['id_user'] == $top['id_user']):?>
+                    <div>
+                        <span>Topic Anda</span>
+                        <span><?= $top["kategori"] ?></span><br>
+                        <span><?= $_SESSION["username"]?></span><br>
+                        <a href="../client/topic_detail.php?id_topic=<?= $top['id_topic'] ?>"><?= htmlspecialchars($top['topic']) ?></a>
+                    </div>
+                <?php else:?>
+                        <div>
+                            <span><?= $top["kategori"] ?></span><br>
+                            <span><?= $top["username"]?></span><br>
+                            <a href="../client/topic_detail.php?id_topic=<?= $top['id_topic'] ?>"><?= htmlspecialchars($top['topic']) ?></a>
+                        </div>
+                <?php endif;?>
 			<?php endif;?>
             
         </div>
@@ -50,6 +64,3 @@
 <?php endif; ?>
 
 <!-- ke Halaman membuat topik client-->
-<?php if($_SESSION['id_role'] == 1): ?>
-    <a href="../client/create_topik.php?id_user=<?=$id_user?>">buat topik</a>
-<?php endif;?>

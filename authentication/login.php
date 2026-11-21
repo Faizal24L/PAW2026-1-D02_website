@@ -31,6 +31,7 @@
                     $_SESSION["isLogin"] = true;
                     $_SESSION["id_user"] = $user['id_user'];
                     $_SESSION["id_role"] = $user["id_role"];
+                    $_SESSION["username"] = $user["username"];
                     header("Location: /PAW2026-1-D02_website/expert/dashboard_expert.php");
                     exit();
                 }else if ($user["id_role"] == 1){
@@ -38,6 +39,7 @@
                     $_SESSION["isLogin"] = true;
                     $_SESSION["id_user"] = $user['id_user'];
                     $_SESSION["id_role"] = $user["id_role"];
+                    $_SESSION["username"] = $user["username"];
                     header("Location: /PAW2026-1-D02_website/client/dashboard_client.php");
                     exit();
                 }
@@ -48,8 +50,6 @@
     }
 
     session_start();
-    // var_dump($errors);
-    // var_dump($_SESSION["isLogin"]);
 ?>
 
 <!DOCTYPE html>
@@ -59,22 +59,23 @@
     <title>Login</title>
 </head>
 <body>
-    <h1>Login</h1>
+    <h1>Selamat Datang</h1>
+    <span>Masuk ke akun Tanya Pakar untuk melanjutkan diskusi</span>
 
     <form method="POST" action="login.php">
-        <label>Username</label><br>
-        <input type="text" name="username" value="<?= isset($errors['username']) && isset($_POST['username'])? $_POST['username']:""?>">
+        <label>USERNAME</label><br>
+        <input type="text" name="username" placeholder="Masukkan Username Anda" value="<?= isset($errors['username']) && isset($_POST['username'])? $_POST['username']:""?>">
         <span style="color:red"><?=$errors['username']??""?></span>
 
-        <br><label>Password</label><br>
-        <input type="password" name="password" value="<?= isset($errors['password']) && isset($_POST['password'])? $_POST['password']:""?>">
+        <br><label>PASSWORD</label><br>
+        <input type="password" name="password" placeholder="Masukkan Password Anda" value="<?= isset($errors['password']) && isset($_POST['password'])? $_POST['password']:""?>">
         <span style="color:red"><?=$errors['password']??""?></span>
 
-        <button type="submit">Login</button>
+        <button type="submit">MASUK SEKARANG</button>
     </form>
     
     <span><?=$error??""?></span>
 
-    <p>Belum punya akun? <a href="register.php">Daftar</a></p>
+    <p>Belum punya akun? <a href="register.php">Daftar di sini</a></p>
 </body>
 </html>

@@ -21,10 +21,17 @@
 
 
 
-    $sql = "SELECT topics.topic, replys.reply, topics.id_user
-        FROM topics LEFT JOIN replys 
-        on topics.id_topic = replys.id_topic
-        WHERE topics.id_topic = :topic";
+    $sql = "SELECT 
+                topics.topic,
+                replys.id_user,
+                replys.reply,
+                replys.id_reply,
+                users.username,
+                categories.kategori
+            FROM topics LEFT JOIN replys ON topics.id_topic = replys.id_topic
+            LEFT JOIN users ON replys.id_user = users.id_user
+            LEFT JOIN categories ON categories.id_kategori = topics.id_kategori
+            WHERE topics.id_topic = :topic";
 
     $query = $dbc -> prepare($sql); 
     $query->bindValue(":topic", $IDtopic);
@@ -51,7 +58,11 @@
                 <input type="submit" name="edit_topic" value="edit">
             </form>
         <?php else: ?>
-            <p>topic</p>
+            <div>
+                <?= $user[0]["kategori"] ?> <br>
+                <?= $user[0]["username"] ?> <br>
+                <?= $user[0]["topic"] ?>
+            </div>
             <h2><?= htmlspecialchars($user[0]["topic"]) ?></h2>
     <?php endif; ?>
     <h2>Balasan</h2>

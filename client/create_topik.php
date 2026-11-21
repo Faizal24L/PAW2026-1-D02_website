@@ -28,10 +28,10 @@
     <title>Create Topict</title>
 </head>
 <body>
+    <a href="dashboard_client.php">Kembali ke Dashboard</a>
+    <h1>Buat Topik Diskusi Baru</h1>
+    <span>Tuliskan pertanyaan dengan jelas agar para expert dapat membantu</span>
     <form method="POST" action="">
-        <label>Topik baru</label><br>
-        <textarea name="topic"></textarea>
-        <br>
         <label for="id_role">Pilih Role:</label>
         <select name="id_kategori">
             <option value="1">penentuan topik</option>
@@ -42,7 +42,9 @@
             <option value="6">Publikasi Ilmiah</option>
         </select>
         <br>
-        <button type="submit">kirim</button>
+        <textarea name="topic"></textarea>
+        <br>
+        <button type="submit">Publikasi Topik</button>
     </form>
 </body>
 </html>

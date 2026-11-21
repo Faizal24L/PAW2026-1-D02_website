@@ -35,8 +35,6 @@
             
         }
     }
-
-    var_dump($errors);
 ?>
 
 <!DOCTYPE html>
@@ -46,34 +44,35 @@
     <title>Login</title>
 </head>
 <body>
-    <h2>Registrasi</h2>
+    <h1>Buat Akun Baru</h1>
+    <span>Bergabunglah sebagai Pelajar atau Pengajar</span>
 
     <form method="POST" action="">
-        <label>Username</label><br>
-        <input type="text" name="username" value="<?= isset($errors['username']) && isset($_POST['username'])? $_POST['username']:""?>">
+        <label>USERNAME</label><br>
+        <input type="text" name="username" placeholder="contoh: Prabowo" value="<?= isset($errors['username']) && isset($_POST['username'])? $_POST['username']:""?>">
         <span style="color:red"><?=$errors['username']??""?></span>
 
-        <br><label>Password</label><br>
-        <input type="password" name="password" value="<?= isset($errors['password']) && isset($_POST['password'])? $_POST['password']:""?>">
+        <br><label>PASSWORD</label><br>
+        <input type="password" name="password" placeholder="Minimal 8 Karakter" value="<?= isset($errors['password']) && isset($_POST['password'])? $_POST['password']:""?>">
         <span style="color:red"><?=$errors['password']??""?></span>
 
-        <br><label>npmer Telepon</label><br>
-        <input type="text" name="telepon" value="<?= isset($errors['telepon']) && isset($_POST['telepon'])? $_POST['telepon']:""?>">
+        <br><label>NO. TELEPON</label><br>
+        <input type="text" name="telepon" placeholder="08xxxxxxxxxx" value="<?= isset($errors['telepon']) && isset($_POST['telepon'])? $_POST['telepon']:""?>">
         <span style="color:red"><?=$errors['telepon']??""?></span>
 
-        <br><label>Tanggal Lahir</label><br>
+        <br><label>TANGGAL LAHIR</label><br>
         <input type="date" name="tanggal_lahir" value="<?= isset($errors['tanggal_lahir']) && isset($_POST['tanggal_lahir'])? $_POST['tanggal_lahir']:""?>">
         <span style="color:red"><?=$errors['tanggal Lahir']??""?></span>
 
         <br>
-        <label for="id_role">Pilih Role:</label>
+        <label for="id_role">PILIH ROLE:</label>
         <select name="id_role">
-            <option value="1">User</option>
-            <option value="2">Pakar</option>
+            <option value="1">USER</option>
+            <option value="2">PAKAR</option>
         </select>
 
-        <br><button type="submit">Login</button>
+        <br><button type="submit">Daftar!</button>
     </form>
-    <a href="./login.php">Halaman Login</a>
+    <p>Sudah punya Akun? <a href="./login.php">Login di sini</a></p>
 </body>
 </html>

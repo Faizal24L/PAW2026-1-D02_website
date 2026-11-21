@@ -16,7 +16,6 @@
     $query->execute();
     
     $user = $query->fetch();
-    var_dump($user);
 
 ?>
 
@@ -28,16 +27,21 @@
     <title>profile</title>
 </head>
 <body>
-    <h1>PROFILE</h1>
-    <p>NAMA: <?= htmlspecialchars($user["username"])?></p>
-    <p>NOMOR TELEPON: <?= htmlspecialchars($user["telepon"])?></p>
-    <p>TANGGAL LAHIR: <?= htmlspecialchars($user["tanggal_lahir"])?></p>
-    <a href="./edit_profile.php?id_role=<?= $id_role ?>">kelola profile</a>
-    
     <?php if ($id_role == 2):?>
-        <a href="../expert/dashboard_expert.php">kembali</a>
+        <a href="../expert/dashboard_expert.php">DASHBOAR</a>
     <?php else:?>
-        <a href="../client/dashboard_client.php">dashboard</a>
+        <a href="../client/dashboard_client.php">DASHBOARD</a>
     <?php endif;?>
+    <p>PROFILE</p>
+    <h1><?= htmlspecialchars($user["username"])?></h1>
+    <?php if($_SESSION["id_role"] == 1):?>
+        <span>Client / Pelajar</span>
+    <?php else:?>
+        <span>Expert / Pakar</span>
+    <?php endif?>
+    <div>NAMA: <?= htmlspecialchars($user["username"])?></div>
+    <div>NOMOR TELEPON: <?= htmlspecialchars($user["telepon"])?></div>
+    <div>TANGGAL LAHIR: <?= htmlspecialchars($user["tanggal_lahir"])?></div>
+    <a href="./edit_profile.php?id_role=<?= $id_role ?>">kelola profile</a>
 </body>
 </html>
