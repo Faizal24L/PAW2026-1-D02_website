@@ -25,29 +25,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Create Topict</title>
 </head>
 <body>
-    <!-- header -->
-    <?php require "../component/header.php";?>
+    <div class="container">
+        <!-- header -->
+        <?php require "../component/header.php";?>
 
-    <a href="dashboard_client.php">Kembali ke Dashboard</a>
-    <h1>Buat Topik Diskusi Baru</h1>
-    <span>Tuliskan pertanyaan dengan jelas agar para expert dapat membantu</span>
-    <form method="POST" action="">
-        <label for="id_role">Pilih Role:</label>
-        <select name="id_kategori">
-            <option value="1">penentuan topik</option>
-            <option value="2">Metodologi Penelitian</option>
-            <option value="3">Pengolahan Data</option>
-            <option value="4">Penulisan Ilmiah</option>
-            <option value="5">Referensi dan Sitasi</option>
-            <option value="6">Publikasi Ilmiah</option>
-        </select>
-        <br>
-        <textarea name="topic"></textarea>
-        <br>
-        <button type="submit">Publikasi Topik</button>
-    </form>
+        <!-- content -->
+        <div class="content">
+            <div class="box_tengah">
+                <a href="dashboard_client.php"><< Kembali ke Dashboard</a>
+                <div class="box">
+                    <h1>Buat Topik Diskusi Baru</h1>
+                    <small>Tuliskan pertanyaan dengan jelas agar para expert dapat membantu</small>
+                    <form method="POST" action="">
+                        <label for="id_role">KATEGORI MATA PELAJARAN / BIDANG:</label><br>
+                        <select name="id_kategori">
+                            <option value="1">penentuan topik</option>
+                            <option value="2">Metodologi Penelitian</option>
+                            <option value="3">Pengolahan Data</option>
+                            <option value="4">Penulisan Ilmiah</option>
+                            <option value="5">Referensi dan Sitasi</option>
+                            <option value="6">Publikasi Ilmiah</option>
+                        </select>
+                        <br>
+                        <label>DETAIL PERTANYAAN</label><br>
+                        <textarea name="topic"></textarea>
+                        <br>
+                        <button type="submit">Publikasi Topik</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <?php require "../component/footer.php";?>
+    </div>
 </body>
 </html>

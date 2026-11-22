@@ -17,6 +17,7 @@
                     FROM topics
                     LEFT JOIN categories 
                     ON topics.id_kategori = categories.id_kategori
+                    WHERE topics.id_kategori = :id_kategori
                     LEFT JOIN users 
                     ON topics.id_user = users.id_user
                     ORDER BY topics.id_topic DESC";

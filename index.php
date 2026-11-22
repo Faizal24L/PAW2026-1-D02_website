@@ -11,17 +11,19 @@
     if(isset($_GET['kategori']) && $_GET['kategori'] !== ""){
         $id_kategori = $_GET['kategori'];
         //tampilkan topik sesuai kategori
-        $sql_topik = "SELECT topics.id_topic, topics.id_user, topics.topic, categories.kategori
+        $sql_topik = "SELECT topics.id_topic, topics.id_user, topics.topic, categories.kategori, users.username
                 FROM topics LEFT JOIN categories ON topics.id_kategori = categories.id_kategori
                 WHERE topics.id_kategori = :id_kategori
+                LEFT JOIN users ON topics.id_user = users.id_user
                 ORDER BY topics.id_topic DESC";
         $query_topik =$dbc -> prepare($sql_topik);
         $query_topik -> bindValue(":id_kategori", $id_kategori);
         $query_topik->execute();
     }else {
         // Tampilkan semua topik 
-        $sql_topic = "SELECT topics.id_topic, topics.id_user, topics.topic, categories.kategori 
+        $sql_topic = "SELECT topics.id_topic, topics.id_user, topics.topic, categories.kategori, users.username
                     FROM topics LEFT JOIN categories ON topics.id_kategori = categories.id_kategori
+                    LEFT JOIN users ON topics.id_user = users.id_user
                     ORDER BY topics.id_topic DESC";
         $query_topik = $dbc->prepare($sql_topic);
         $query_topik->execute();
@@ -34,41 +36,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Dashboard</title>
 </head>
 <body>
-    <!-- header -->
-    <?php require "../component/header.php"?>
+    <div class="container">
+        <!-- header -->
+        <?php require "./component/header.php"?>
 
-    <!-- content -->
-    <div class="content">
-        <!-- filter kategori -->
-        <form action="index.php" method="GET">
-            <label for="kategori">kategori</label>
-            <select name="kategori">
-                <option value="">semua kategori</option>
-                <?php foreach($kategori as $kat): ?>
-                    <option value="<?= $kat['id_kategori'] ?>"><?= $kat['kategori']?></option>
-                <?php endforeach; ?>
-            </select>
-            <button type="submit">filter</button>
-        </form>
-
-        <br>
-
-        <!-- daftar topik -->
-        <?php if (count($topik) > 0): ?>
-            <?php foreach ($topik as $top): ?>
-            <div>
-                <a href="./authentication/login.php"><?= $top['topic'] ?></a>
+        <!-- content -->
+        <div class="content">
+            <div class="box_kat">
+                <!-- filter kategori -->
+                <h2 class="box_putih"><span class="box_pinkmuda">Kategori</span> Topik Diskusi</h2>
+                <small>Jelajahi pertanyaan dari pelajar. Masuk untuk membuka kunci jawaban pakar.</small>
+                <form action="index.php" method="GET">
+                    <select name="kategori">
+                        <option value="">semua kategori</option>
+                        <?php foreach($kategori as $kat): ?>
+                            <option value="<?= $kat['id_kategori'] ?>"><?= $kat['kategori']?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <button type="submit">filter</button>
+                </form>
             </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>Belum ada topik pada kategori ini.</p>
-        <?php endif; ?>
+            
+            <!-- daftar topik -->
+            <?php if (count($topik) > 0): ?>
+                <?php foreach ($topik as $top): ?>
+                    <div class="box">
+                        <small><?= $top["kategori"] ?></small><br>
+                        <small><?= $top["username"]?></small><br>
+                        <a href="./authentication/login.php" class="box_topik"><?= $top['topic'] ?></a>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="box">Belum ada topik pada kategori ini.</div>
+            <?php endif; ?>
+        </div>
+        <!-- footer -->
+        <?php require "./component/footer.php"?>
     </div>
-    
-    <!-- footer -->
-     <?php require "../component/footer.php"?>
 </body>
 </html>

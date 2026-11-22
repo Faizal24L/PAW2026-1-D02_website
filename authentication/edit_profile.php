@@ -78,7 +78,7 @@
         <input type="password" name="new_password" value="">
         <span style="color:red"><?=$errors['password']??""?></span><br>
 
-        <input type="submit" name="kirim" value="kirim">
+        <button type="submit" name="kirim">Kirim</button>
     </form>
 
     <a href="./profile.php">batal</a>

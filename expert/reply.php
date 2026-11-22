@@ -66,33 +66,45 @@
     <title>Topic</title>
 </head>
 <body>
-    <p><a href="./dashboard_expert.php">Kembali ke Dashboard</a></p>
+    <!-- header -->
+    <?php require "../component/header.php";?>
 
-    <p><?= $user[0]["topic"] ?></p>
-    
-    <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
-        <label>Penjelasan / Jawaban Anda Sebagai Expert</label><br>
-        <textarea name="reply" placeholder="Tulis balasan..."></textarea>
-        <input type="submit" name="submit_reply" value="kirim">
-    </form>
-    <?php foreach($user as $row): ?>
-        <!-- Ubah $user menjadi $row (variabel perulangan) -->
-        <?php if(!empty($row['id_reply'])): ?>
-            <?php if($row['id_user'] == $_SESSION['id_user']): ?>
-                <!-- Isi string kosong dengan 'reply' -->
-                 <span><?= $row['username']?></span>
-                 <span>Balasan Anda</span>
-                <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
-                    <input type="hidden" name="id_reply" value="<?= htmlspecialchars($row['id_reply']) ?>">
-                    <textarea name="new_reply"><?= htmlspecialchars($row["reply"]) ?></textarea>
-                    <input type="submit" name="edit_reply" value="edit">
-                </form>
-            <?php else: ?>
-                <!-- Isi string kosong dengan 'reply' -->
-                 <span><?= $row['username']?></span>
-                <p><?= htmlspecialchars($row['reply']) ?></p>
+    <!-- content -->
+    <div class="content">
+        <div class="box">
+            <p><?= $user[0]["topic"] ?></p>
+            <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
+                <label>Penjelasan / Jawaban Anda Sebagai Expert</label><br>
+                <textarea name="reply" placeholder="Tulis balasan..."></textarea>
+                <button type="submit" name="submit_reply">Kirim</button>
+            </form>
+        </div>
+        <?php foreach($user as $row): ?>
+            <!-- Ubah $user menjadi $row (variabel perulangan) -->
+            <?php if(!empty($row['id_reply'])): ?>
+                <?php if($row['id_user'] == $_SESSION['id_user']): ?>
+                    <!-- Isi string kosong dengan 'reply' -->
+                    <div class="box">
+                        <span><?= $row['username']?></span>
+                        <span>Balasan Anda</span>
+                        <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
+                            <input type="hidden" name="id_reply" value="<?= htmlspecialchars($row['id_reply']) ?>">
+                            <textarea name="new_reply"><?= htmlspecialchars($row["reply"]) ?></textarea>
+                            <button type="submit" name="edit_reply">Edit</button>
+                        </form>
+                    </div>
+                <?php else: ?>
+                    <!-- Isi string kosong dengan 'reply' -->
+                    <div class="box">
+                        <span><?= $row['username']?></span>
+                        <p><?= htmlspecialchars($row['reply']) ?></p>
+                    </div>
+                <?php endif; ?>
             <?php endif; ?>
-        <?php endif; ?>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
+    </div>
+
+    <!-- footer -->
+    <?php require "../component/footer.php";?>
 </body>
 </html>

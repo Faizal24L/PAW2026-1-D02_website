@@ -38,7 +38,6 @@
     $query->execute();
     
     $user = $query->fetchAll();
-    var_dump($user);
 ?>
 
 <!DOCTYPE html>
@@ -46,30 +45,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Topic</title>
 </head>
 <body>
-    <h1>topic dan balasannya</h1>
+    <div class="container">
+        <!-- header -->
+        <?php require "../component/header.php";?>
 
-    <?php if($user[0]['id_user'] == $_SESSION['id_user']): ?>
-            <h2>topic</h2>
-            <form action="topic_detail.php?id_topic=<?= $IDtopic ?>" method="POST">
-                <textarea name="new_topic"><?= htmlspecialchars($user[0]["topic"]) ?></textarea>
-                <input type="submit" name="edit_topic" value="edit">
-            </form>
-        <?php else: ?>
-            <div>
-                <?= $user[0]["kategori"] ?> <br>
-                <?= $user[0]["username"] ?> <br>
-                <?= $user[0]["topic"] ?>
+        <!-- content -->
+        <div class="content">
+            <div class="box_tengah">
+                <a href="./dashboard_client.php"><< kembali ke Halaman utama</a>
+                <?php if($user[0]['id_user'] == $_SESSION['id_user']): ?>
+                    <div class="box">
+                        <h2>topic</h2>
+                        <form action="topic_detail.php?id_topic=<?= $IDtopic ?>" method="POST">
+                            <textarea name="new_topic"><?= htmlspecialchars($user[0]["topic"]) ?></textarea>
+                            <button type="submit" name="edit_topic">edit</button>
+                        </form>
+                    </div>
+                <?php else: ?>
+                    <div class="box">
+                        <small class="box_pinkmuda"><?= $user[0]["kategori"] ?> </small><br>
+                        <small><?= $user[0]["username"] ?> </small><br>
+                        <h2><?= htmlspecialchars($user[0]["topic"]) ?></h2>
+                    </div>
+                <?php endif; ?>
+                <p><b>Jawaban dari pakar</b></p>
+                <?php foreach($user as $row): ?>
+                    <div class="box"><?= htmlspecialchars($row['reply']) ?></div>
+                <?php endforeach; ?>
             </div>
-            <h2><?= htmlspecialchars($user[0]["topic"]) ?></h2>
-    <?php endif; ?>
-    <h2>Balasan</h2>
-    <?php foreach($user as $row): ?>
-            <p><?= htmlspecialchars($row['reply']) ?></p>
-    <?php endforeach; ?>
-    <a href="./dashboard_client.php">kembali</a>
-    
+        </div>
+
+        <!-- footer -->
+         <?php require "../component/footer.php";?>
+    </div>   
 </body>
 </html>
