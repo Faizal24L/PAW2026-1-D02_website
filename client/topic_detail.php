@@ -64,16 +64,16 @@
             <div class="box_tengah">
                 <a href="./dashboard_client.php"><< kembali ke Halaman utama</a>
                 <?php if($user[0]['id_user'] == $_SESSION['id_user']): ?>
-                    <div class="box">
-                        <h2>topic</h2>
-                        <form action="topic_detail.php?id_topic=<?= $IDtopic ?>" method="POST">
-                            <small><?= $user[0]["username_topic"] ?> </small><br>
-                            <textarea name="new_topic"><?= htmlspecialchars($user[0]["topic"]) ?></textarea>
-                            <button type="submit" name="edit_topic">edit</button>
-                        </form>
-                    </div>
+                    <form action="topic_detail.php?id_topic=<?= $IDtopic ?>" method="POST" class="box">
+                        <span class="box_hijau">TOPIC</span>
+                        <small class="box_pinkmuda"><?= $user[0]["kategori"] ?> </small><br>
+                        <small ><?= $user[0]["username_topic"] ?> </small><br>
+                        <textarea name="new_topic"><?= htmlspecialchars($user[0]["topic"]) ?></textarea>
+                        <button type="submit" name="edit_topic">edit</button>
+                    </form>
                 <?php else: ?>
                     <div class="box">
+                        <span class="box_hijau">TOPIC</span>
                         <small class="box_pinkmuda"><?= $user[0]["kategori"] ?> </small><br>
                         <small><?= $user[0]["username_topic"] ?> </small><br>
                         <h2><?= htmlspecialchars($user[0]["topic"]) ?></h2>
@@ -81,8 +81,10 @@
                 <?php endif; ?>
                 <p><b>Jawaban dari pakar</b></p>
                 <?php foreach($user as $row): ?>
-                    <small>@<?= $row["username_reply"] ?> </small><br>
-                    <div class="box"><?= htmlspecialchars($row['reply']) ?></div>
+                    <div class="box">
+                        <small><?= $row["username_reply"] ?> </small><br>
+                        <?= htmlspecialchars($row['reply']) ?>
+                    </div>
                 <?php endforeach; ?>
             </div>
         </div>

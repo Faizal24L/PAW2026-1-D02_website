@@ -41,9 +41,13 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Login</title>
 </head>
 <body>
+    <!-- header -->
+    <?php require "../component/header.php";?>
+
     <h1>Buat Akun Baru</h1>
     <span>Bergabunglah sebagai Pelajar atau Pengajar</span>
 
@@ -74,5 +78,8 @@
         <br><button type="submit">Daftar!</button>
     </form>
     <p>Sudah punya Akun? <a href="./login.php">Login di sini</a></p>
+
+    <!-- footer -->
+    <?php require "../component/footer.php";?>
 </body>
 </html>

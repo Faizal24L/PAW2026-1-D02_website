@@ -24,24 +24,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
     <title>profile</title>
 </head>
 <body>
-    <?php if ($id_role == 2):?>
-        <a href="../expert/dashboard_expert.php">DASHBOAR</a>
-    <?php else:?>
-        <a href="../client/dashboard_client.php">DASHBOARD</a>
-    <?php endif;?>
-    <p>PROFILE</p>
-    <h1><?= htmlspecialchars($user["username"])?></h1>
-    <?php if($_SESSION["id_role"] == 1):?>
-        <span>Client / Pelajar</span>
-    <?php else:?>
-        <span>Expert / Pakar</span>
-    <?php endif?>
-    <div>NAMA: <?= htmlspecialchars($user["username"])?></div>
-    <div>NOMOR TELEPON: <?= htmlspecialchars($user["telepon"])?></div>
-    <div>TANGGAL LAHIR: <?= htmlspecialchars($user["tanggal_lahir"])?></div>
-    <a href="./edit_profile.php?id_role=<?= $id_role ?>">kelola profile</a>
+    <!-- header -->
+    <?php require "../component/header.php";?>
+
+    <!-- content -->
+    <div class="content">
+        <?php if ($id_role == 2):?>
+            <a href="../expert/dashboard_expert.php"><< Kembali ke Halaman Utama</a>
+        <?php else:?>
+            <a href="../client/dashboard_client.php"><< Kembali ke Halaman Utama</a>
+        <?php endif;?>
+        <div class="box_tengah">
+            <div class="box_form_atas">
+                <h1><?= htmlspecialchars($user["username"])?></h1>
+                <?php if($_SESSION["id_role"] == 1):?>
+                    <span class="box_pinkmuda">Client / Pelajar</span>
+                <?php else:?>
+                    <span class="box_pinkmuda">Expert / Pakar</span>
+                <?php endif?>
+            </div>
+            <div class="box_form">
+                <div class="box">NAMA: <?= htmlspecialchars($user["username"])?></div>
+                <div>NOMOR TELEPON: <?= htmlspecialchars($user["telepon"])?></div>
+                <div>TANGGAL LAHIR: <?= htmlspecialchars($user["tanggal_lahir"])?></div>
+                <a href="./edit_profile.php?id_role=<?= $id_role ?>">kelola profile</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <?php require "../component/footer.php";?>
 </body>
 </html>

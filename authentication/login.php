@@ -6,8 +6,8 @@
         $username = $_POST['username'];
         $password =  $_POST['password'];
 
-        // valUsername($errors, $username);
-        // valPassword($errors, $password);
+        valUsername($errors, $username);
+        valPassword($errors, $password);
 
         if(empty($errors)){
             require "../connection/database.php";
@@ -30,16 +30,13 @@
                     // $_SESSION["isExpert"] = true;
                     $_SESSION["isLogin"] = true;
                     $_SESSION["id_user"] = $user['id_user'];
-                    $_SESSION["id_role"] = $user["id_role"];
-                    $_SESSION["username"] = $user["username"];
                     header("Location: /PAW2026-1-D02_website/expert/dashboard_expert.php");
                     exit();
                 }else if ($user["id_role"] == 1){
                     // $_SESSION["isClient"] = true;
                     $_SESSION["isLogin"] = true;
                     $_SESSION["id_user"] = $user['id_user'];
-                    $_SESSION["id_role"] = $user["id_role"];
-                    $_SESSION["username"] = $user["username"];
+
                     header("Location: /PAW2026-1-D02_website/client/dashboard_client.php");
                     exit();
                 }
@@ -50,32 +47,50 @@
     }
 
     session_start();
+    // var_dump($errors);
+    // var_dump($_SESSION["isLogin"]);
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Login</title>
 </head>
 <body>
-    <h1>Selamat Datang</h1>
-    <span>Masuk ke akun Tanya Pakar untuk melanjutkan diskusi</span>
+     <!-- header -->
+    <?php require "../component/header.php";?>
 
-    <form method="POST" action="login.php">
-        <label>USERNAME</label><br>
-        <input type="text" name="username" placeholder="Masukkan Username Anda" value="<?= isset($errors['username']) && isset($_POST['username'])? $_POST['username']:""?>">
-        <span style="color:red"><?=$errors['username']??""?></span>
+    <!-- content -->
+    <div class="content">
+        <div class="box_tengah">
+            <div class="box_form_atas">
+                <h1>Selamat Datang Kembali</h1>
+                <small>Masuk ke akun ResearchMate unutk melanjutkan diskusi</small>
+            </div>
+            <div class="box_form">
+                <form method="POST" action="login.php">
+                    <label>Username</label><br>
+                    <input type="text" name="username" value="<?= isset($errors['username']) && isset($_POST['username'])? $_POST['username']:""?>">
+                    <span style="color:red"><?=$errors['username']??""?></span>
 
-        <br><label>PASSWORD</label><br>
-        <input type="password" name="password" placeholder="Masukkan Password Anda" value="<?= isset($errors['password']) && isset($_POST['password'])? $_POST['password']:""?>">
-        <span style="color:red"><?=$errors['password']??""?></span>
+                    <br><label>Password</label><br>
+                    <input type="password" name="password" value="<?= isset($errors['password']) && isset($_POST['password'])? $_POST['password']:""?>">
+                    <span style="color:red"><?=$errors['password']??""?></span>
 
-        <button type="submit">MASUK SEKARANG</button>
-    </form>
-    
-    <span><?=$error??""?></span>
+                    <button type="submit">Login</button>
+                </form>
+                
+                <span><?=$error??""?></span>
+            </div>
+        </div>
+        
 
-    <p>Belum punya akun? <a href="register.php">Daftar di sini</a></p>
+        <p>Belum punya akun? <a href="register.php">Daftar</a></p>
+    </div>
+
+    <!-- footer -->
+    <?php require "../component/footer.php";?>
 </body>
 </html>
