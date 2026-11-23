@@ -4,6 +4,7 @@
     require "../connection/database.php";
 
     $id_user = $_SESSION["id_user"];
+    $id_role = $_SESSION["id_role"];
 
     require "../connection/dbdata.php";
 ?>

@@ -2,6 +2,8 @@
     session_start();
     $id_user = $_SESSION["id_user"];
     $id_role = $_SESSION["id_role"];
+    var_dump($id_user);
+    var_dump($id_role);
 
     require "../connection/database.php";
     if ($id_role == 1){
@@ -9,10 +11,6 @@
     } else {
         require "../connection/permission_expert.php";
     }
-
-    
-    echo $id_role;
-
     
     // echo $id_role;
     $sql_s = "SELECT username, telepon, tanggal_lahir FROM users WHERE id_user = :id_user";
@@ -34,7 +32,7 @@
         valPassword($errors, $new_password);
         valNomor($errors, $new_telepon);
         tanggalLahir($errors, $new_tanggal_lahir);
-
+        // die(var_dump($errors));
         if(empty($errors)){
             $sql = "UPDATE users SET username = :new_username , telepon = :new_telepon, tanggal_lahir = :new_tanggal_lahir, password = SHA2(:new_password, 256) WHERE id_user = :id_user";
             $query = $dbc -> prepare($sql); 
@@ -45,7 +43,6 @@
             $query->bindValue(":new_password", $new_password);
             $query->execute();
             
-
             header("Location:./profile.php");
             exit();
         }
@@ -72,13 +69,13 @@
 
         <label>TANGGAL LAHIR: </label>
         <input type="date" name="new_tanggal_lahir" value="<?= htmlspecialchars($user['tanggal_lahir'])?>">
-        <span style="color:red"><?=$errors['tanggal lahir']??""?></span><br>
+        <span style="color:red"><?=$errors['tanggal_lahir']??""?></span><br>
 
         <label>PASSWORD: </label>
         <input type="password" name="new_password" value="">
         <span style="color:red"><?=$errors['password']??""?></span><br>
 
-        <button type="submit" name="kirim">Kirim</button>
+        <input type="submit" name="kirim" value="kirim">
     </form>
 
     <a href="./profile.php">batal</a>

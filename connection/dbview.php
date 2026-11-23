@@ -26,6 +26,7 @@
             <h2 class="box_putih"><span class="box_pinkmuda">Kategori</span> Topik Diskusi</h2>
             <small>Jelajahi pertanyaan dari pelajar serta jawaban pakar</small>
         </div>
+        <?php if ($id_role == 2):?>
         <form action="dashboard_expert.php" method="GET">
             <select name="kategori">
                 <option value="">semua kategori</option>
@@ -35,6 +36,17 @@
             </select>
             <button type="submit">filter</button>
         </form>
+        <?php else:?>
+            <form action="dashboard_client.php" method="GET">
+                <select name="kategori">
+                    <option value="">semua kategori</option>
+                    <?php foreach($kategori as $kat): ?>
+                        <option value="<?= $kat['id_kategori'] ?>"><?= htmlspecialchars($kat['kategori'])?></option>
+                    <?php endforeach; ?>
+                </select>
+                <button type="submit">filter</button>
+            </form>
+        <?php endif;?>
     </div>
 
     <!-- daftar topik -->

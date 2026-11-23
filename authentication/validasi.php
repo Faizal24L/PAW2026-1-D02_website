@@ -29,12 +29,12 @@
 
     // validasi masukan format password
     function valPassword(&$errors, $field){
-        $pattern = "/^[0-9][A-Za-z][!@#$%^&*]{8,15}$/";
+        $pattern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/";
 
         if (cekKosong($field)){
             $errors["password"] = "password wajib di isi";
         } elseif (!preg_match($pattern, $field)){
-            $errors["password"] = "Minimal panjang karakter delapa";
+            $errors["password"] = "Password minimal 8 karakter, harus memiliki huruf besar, huruf kecil, angka, dan karakter spesial";
         }
     }
 
@@ -49,10 +49,9 @@
         $pattern = "/^[1-9]{4}-[0-9]{2}-[0-9]{2}$/";
         
         if (cekKosong($field)){
-            $errors["tanggal Lahir"] = "tanggal lahir wajib di isi";
+            $errors["tanggal_lahir"] = "tanggal lahir wajib di isi";
         } elseif(!preg_match($pattern, $field) && $umur < 18){
-            $errors["tanggal Lahir"] = "tanggal lahir wajib angka dan umur wajib 18+";
+            $errors["tanggal_lahir"] = "tanggal lahir wajib angka dan umur wajib 18+";
         }
     }
-
 ?>

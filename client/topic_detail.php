@@ -22,22 +22,28 @@
 
 
     $sql = "SELECT 
-                topics.topic,
-                replys.id_user,
-                replys.reply,
-                replys.id_reply,
-                users.username,
-                categories.kategori
-            FROM topics LEFT JOIN replys ON topics.id_topic = replys.id_topic
-            LEFT JOIN users ON replys.id_user = users.id_user
-            LEFT JOIN categories ON categories.id_kategori = topics.id_kategori
-            WHERE topics.id_topic = :topic";
+            topics.id_topic,
+            topics.id_user,
+            topics.topic,
+            users.username AS username_topic,
+            replys.id_user AS id_user_reply,
+            replys.reply,
+            replys.id_reply,
+            users_reply.username AS username_reply,
+            categories.kategori
+        FROM topics
+        LEFT JOIN users ON topics.id_user = users.id_user
+        LEFT JOIN replys ON topics.id_topic = replys.id_topic
+        LEFT JOIN users AS users_reply ON replys.id_user = users_reply.id_user
+        LEFT JOIN categories ON categories.id_kategori = topics.id_kategori
+        WHERE topics.id_topic = :topic";
 
     $query = $dbc -> prepare($sql); 
     $query->bindValue(":topic", $IDtopic);
     $query->execute();
     
     $user = $query->fetchAll();
+    // var_dump($user);
 ?>
 
 <!DOCTYPE html>
@@ -61,6 +67,7 @@
                     <div class="box">
                         <h2>topic</h2>
                         <form action="topic_detail.php?id_topic=<?= $IDtopic ?>" method="POST">
+                            <small><?= $user[0]["username_topic"] ?> </small><br>
                             <textarea name="new_topic"><?= htmlspecialchars($user[0]["topic"]) ?></textarea>
                             <button type="submit" name="edit_topic">edit</button>
                         </form>
@@ -68,12 +75,13 @@
                 <?php else: ?>
                     <div class="box">
                         <small class="box_pinkmuda"><?= $user[0]["kategori"] ?> </small><br>
-                        <small><?= $user[0]["username"] ?> </small><br>
+                        <small><?= $user[0]["username_topic"] ?> </small><br>
                         <h2><?= htmlspecialchars($user[0]["topic"]) ?></h2>
                     </div>
                 <?php endif; ?>
                 <p><b>Jawaban dari pakar</b></p>
                 <?php foreach($user as $row): ?>
+                    <small>@<?= $row["username_reply"] ?> </small><br>
                     <div class="box"><?= htmlspecialchars($row['reply']) ?></div>
                 <?php endforeach; ?>
             </div>

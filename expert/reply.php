@@ -39,13 +39,15 @@
 
     $sql = "SELECT 
                 topics.topic,
+                user_topic.username AS username_topic,
                 replys.id_user,
                 replys.reply,
                 replys.id_reply,
-                users.username,
+                users.username AS username_reply,
                 categories.kategori
             FROM topics LEFT JOIN replys ON topics.id_topic = replys.id_topic
             LEFT JOIN users ON replys.id_user = users.id_user
+            LEFT JOIN users AS user_topic ON topics.id_user = user_topic.id_user
             LEFT JOIN categories ON categories.id_kategori = topics.id_kategori
             WHERE topics.id_topic = :topic";
 
@@ -54,7 +56,7 @@
     $query->execute();
     
     $user = $query->fetchAll();
-    // var_dump($user);
+    var_dump($user);
     // exit();
 ?>
 
@@ -72,6 +74,7 @@
     <!-- content -->
     <div class="content">
         <div class="box">
+            <p>@<?= $user[0]["username_topic"]?></p>
             <p><?= $user[0]["topic"] ?></p>
             <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
                 <label>Penjelasan / Jawaban Anda Sebagai Expert</label><br>
@@ -85,7 +88,7 @@
                 <?php if($row['id_user'] == $_SESSION['id_user']): ?>
                     <!-- Isi string kosong dengan 'reply' -->
                     <div class="box">
-                        <span><?= $row['username']?></span>
+                        <span>@<?= $row['username_reply']?></span>
                         <span>Balasan Anda</span>
                         <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
                             <input type="hidden" name="id_reply" value="<?= htmlspecialchars($row['id_reply']) ?>">
@@ -96,7 +99,7 @@
                 <?php else: ?>
                     <!-- Isi string kosong dengan 'reply' -->
                     <div class="box">
-                        <span><?= $row['username']?></span>
+                        <span>@<?= $row['username_reply']?></span>
                         <p><?= htmlspecialchars($row['reply']) ?></p>
                     </div>
                 <?php endif; ?>

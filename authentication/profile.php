@@ -9,7 +9,7 @@
     }
 
     $id_user = $_SESSION["id_user"];
-    $id_role = $_SESSION["id_role"];
+    
     $sql = "SELECT username, telepon, tanggal_lahir FROM users WHERE id_user = :id_user";
     $query = $dbc -> prepare($sql);
     $query -> bindValue(":id_user", $id_user);
