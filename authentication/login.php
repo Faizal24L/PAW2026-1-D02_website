@@ -6,8 +6,8 @@
         $username = $_POST['username'];
         $password =  $_POST['password'];
 
-        valUsername($errors, $username);
-        valPassword($errors, $password);
+        // valUsername($errors, $username);
+        // valPassword($errors, $password);
 
         if(empty($errors)){
             require "../connection/database.php";
@@ -30,13 +30,16 @@
                     // $_SESSION["isExpert"] = true;
                     $_SESSION["isLogin"] = true;
                     $_SESSION["id_user"] = $user['id_user'];
+                    $_SESSION["id_role"] = $user["id_role"];
+                    $_SESSION["username"] = $user["username"];
                     header("Location: /PAW2026-1-D02_website/expert/dashboard_expert.php");
                     exit();
                 }else if ($user["id_role"] == 1){
                     // $_SESSION["isClient"] = true;
                     $_SESSION["isLogin"] = true;
                     $_SESSION["id_user"] = $user['id_user'];
-
+                    $_SESSION["id_role"] = $user["id_role"];
+                    $_SESSION["username"] = $user["username"];
                     header("Location: /PAW2026-1-D02_website/client/dashboard_client.php");
                     exit();
                 }
@@ -47,15 +50,12 @@
     }
 
     session_start();
-    // var_dump($errors);
-    // var_dump($_SESSION["isLogin"]);
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/style.css">
     <title>Login</title>
 </head>
 <body>
