@@ -1,5 +1,6 @@
 <?php
     require "./connection/database.php";
+    $header = "index";
 
     //ambil daftar kategori
     $sql_kat = "SELECT id_kategori, kategori FROM categories ORDER by id_kategori ASC";

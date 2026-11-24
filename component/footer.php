@@ -1,16 +1,27 @@
 <div class="footer">
     <!-- footer halaman publik -->
     <?php if (!isset($_SESSION["isLogin"])):?>
-        <img src="./gambar/logo.png" alt="logo">
-        <div>
-            <img src="./gambar/logo_name.jpg" alt="logo tulisan"><br>
-            <small>Ruang Konsultasi Karya ilmian / penelitian Terpercaya</small>
-        </div>
-        <a href="./index.php">Home</a>
-        <a href="./authentication/login.php">Login</a>
-        <a href="./authentication/register.php">Daftar</a>
-        <span>@ 2026 ReasearchMate website Indonesia<br>Dirancang unutk membantu Mahasiswa</span>
-
+        <?php if ($header == "index"):?>
+            <img src="./gambar/logo.png" alt="logo">
+            <div>
+                <img src="./gambar/logo_name.jpg" alt="logo tulisan"><br>
+                <small>Ruang Konsultasi Karya ilmian / penelitian Terpercaya</small>
+            </div>
+            <a href="./index.php">Home</a>
+            <a href="./authentication/login.php">Login</a>
+            <a href="./authentication/register.php">Daftar</a>
+            <span>@ 2026 ReasearchMate website Indonesia<br>Dirancang unutk membantu Mahasiswa</span>
+            <span>@ 2026 ReasearchMate website Indonesia<br>Dirancang unutk membantu Mahasiswa</span>
+        <?php else:?>
+            <img src="../gambar/logo.png" alt="logo">
+            <div>
+                <img src="../gambar/logo_name.jpg" alt="logo tulisan"><br>
+                <small>Ruang Konsultasi Karya ilmian / penelitian Terpercaya</small>
+            </div>
+            <a href="../index.php">Home</a>
+            <a href="../authentication/login.php">Login</a>
+            <a href="../authentication/register.php">Daftar</a>
+        <?php endif;?>
     <!-- footer halaman private -->
     <?php else:?>
         <img src="../gambar/logo.png" alt="logo">

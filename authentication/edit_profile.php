@@ -30,7 +30,7 @@
 
         valUsername($errors, $new_username);
         valPassword($errors, $new_password);
-        valNomor($errors, $new_telepon);
+        valTelepon($errors, $new_telepon);
         tanggalLahir($errors, $new_tanggal_lahir);
         // die(var_dump($errors));
         if(empty($errors)){
@@ -76,7 +76,7 @@
 
                     <label>TELEPON: </label>
                     <input type="text" name="new_telepon" value="<?= htmlspecialchars($user['telepon'])?>">
-                    <span style="color:red"><?=$errors['nomor']??""?></span><br>
+                    <span style="color:red"><?=$errors['telepon']??""?></span><br>
 
                     <label>TANGGAL LAHIR: </label>
                     <input type="date" name="new_tanggal_lahir" value="<?= htmlspecialchars($user['tanggal_lahir'])?>">

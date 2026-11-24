@@ -5,15 +5,28 @@
 
     <!-- header halaman publik -->
     <?php if (!isset($_SESSION["isLogin"])):?>
-        <div>
-            <img src="./gambar/logo.png" alt="logo">
-            <img src="./gambar/logo_name.jpg" alt="logo tulisan">
-        </div>
-        <div>
-            <a href="./index.php">Home</a>
-            <a href="./authentication/login.php">Login</a>
-            <a href="./authentication/register.php">Daftar</a>
-        </div>
+        <?php if ($header == "index"):?>
+            
+            <div>
+                <img src="./gambar/logo.png" alt="logo">
+                <img src="./gambar/logo_name.jpg" alt="logo tulisan">
+            </div>
+            <div>
+                <a href="./index.php">Home</a>
+                <a href="./authentication/login.php">Login</a>
+                <a href="./authentication/register.php">Daftar</a>
+            </div>
+        <?php else:?>
+            <div>
+                <img src="../gambar/logo.png" alt="logo">
+                <img src="../gambar/logo_name.jpg" alt="logo tulisan">
+            </div>
+            <div>
+                <a href="../index.php">Home</a>
+                <a href="../authentication/login.php">Login</a>
+                <a href="../authentication/register.php">Daftar</a>
+            </div>
+        <?php endif;?>
 
     <!-- header halaman private -->
     <?php else:?>

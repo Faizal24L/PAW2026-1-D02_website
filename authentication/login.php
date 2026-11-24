@@ -1,6 +1,7 @@
 <?php
     require "validasi.php";
     $errors = [];
+    $header = "login";
 
     if($_SERVER["REQUEST_METHOD"] === "POST" ){
         $username = $_POST['username'];

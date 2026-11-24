@@ -1,5 +1,6 @@
 <?php
     require "validasi.php";
+    $header = "register";
     $errors = [];
 
     if($_SERVER["REQUEST_METHOD"] === "POST"){
@@ -11,7 +12,7 @@
 
         valUsername($errors, $username);
         valPassword($errors, $password);
-        valNomor($errors, $telepon);
+        valTelepon($errors, $telepon);
         tanggalLahir($errors, $tanggal_lahir);
 
         if(empty($errors)){
@@ -72,7 +73,7 @@
 
                     <br><label>TANGGAL LAHIR</label><br>
                     <input type="date" name="tanggal_lahir" value="<?= isset($errors['tanggal_lahir']) && isset($_POST['tanggal_lahir'])? $_POST['tanggal_lahir']:""?>">
-                    <span style="color:red"><?=$errors['tanggal Lahir']??""?></span>
+                    <span style="color:red"><?=$errors['tanggal_lahir']??""?></span>
 
                     <br>
                     <label for="id_role">PILIH ROLE:</label>
@@ -80,7 +81,7 @@
                         <option value="1">USER</option>
                         <option value="2">PAKAR</option>
                     </select>
-                    <span style="color:red"><?=$errors['tanggal Lahir']??""?></span>
+                    <span style="color:red"><?=$errors['tanggal_lahir']??""?></span>
 
                     <br><button type="submit">Daftar!</button>
                 </form>

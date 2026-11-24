@@ -17,13 +17,13 @@
     }
 
     // validasi masukan format numerik untuk nomor telepon
-    function valNomor(&$errors, $field){
+    function valTelepon(&$errors, $field){
         $pattern = "/^[0-9]{10,12}$/";
 		
 		if (cekKosong($field)){
-			$errors["nomor"] = "nomor wajib di isi!";
+			$errors["telepon"] = "nomor wajib di isi!";
 		}elseif(!preg_match($pattern, $field)){
-			$errors["nomor"] = "nomor wajib angka, setidaknya 10-12 digit";
+			$errors["telepon"] = "nomor wajib angka, setidaknya 10-12 digit";
 		}
     }
 
