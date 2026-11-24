@@ -33,12 +33,12 @@
 
     <!-- content -->
     <div class="content">
-        <?php if ($id_role == 2):?>
-            <a href="../expert/dashboard_expert.php"><< Kembali ke Halaman Utama</a>
-        <?php else:?>
-            <a href="../client/dashboard_client.php"><< Kembali ke Halaman Utama</a>
-        <?php endif;?>
         <div class="box_tengah">
+            <?php if ($id_role == 2):?>
+                <a href="../expert/dashboard_expert.php"><< Kembali ke Halaman Utama</a>
+            <?php else:?>
+                <a href="../client/dashboard_client.php"><< Kembali ke Halaman Utama</a>
+            <?php endif;?>
             <div class="box_form_atas">
                 <h1><?= htmlspecialchars($user["username"])?></h1>
                 <?php if($_SESSION["id_role"] == 1):?>

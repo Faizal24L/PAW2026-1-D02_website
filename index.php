@@ -46,10 +46,21 @@
 
         <!-- content -->
         <div class="content">
+            <div class="box_awal">
+                <div>
+                    <small class="box_putih">Platform Tanya Jawab Karya Ilmiah</small><br>
+                    <h1>Konsultasi Terpercaya Bersama Para Ahli</h1><br>
+                    <span>Ajukan pertanyaan seputar karya ilmiah, Lalu dapatkan jawaban terverifikasi langsung dari para pakar dan praktisi ahli</span><br>
+                    <a href="./authentication/register.php" class="box_hijau">Mulai Bertanya Gratis</a>
+                    <a href="./authentication/login.php" class="box_pinktua">Masuk ke Akun</a>
+                </div>
+            </div>
             <div class="box_kat">
                 <!-- filter kategori -->
-                <h2 class="box_putih"><span class="box_pinkmuda">Kategori</span> Topik Diskusi</h2>
-                <small>Jelajahi pertanyaan dari pelajar. Masuk untuk membuka kunci jawaban pakar.</small>
+                <div>
+                    <h2 class="box_putih"><span class="box_pinkmuda">Kategori</span> Topik Diskusi</h2>
+                    <small>Jelajahi pertanyaan dari pelajar. Masuk untuk membuka kunci jawaban pakar.</small>
+                </div>
                 <form action="index.php" method="GET">
                     <select name="kategori">
                         <option value="">semua kategori</option>

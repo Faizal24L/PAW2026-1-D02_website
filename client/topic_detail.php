@@ -65,7 +65,7 @@
                 <a href="./dashboard_client.php"><< kembali ke Halaman utama</a>
                 <?php if($user[0]['id_user'] == $_SESSION['id_user']): ?>
                     <form action="topic_detail.php?id_topic=<?= $IDtopic ?>" method="POST" class="box">
-                        <span class="box_hijau">TOPIC</span>
+                        <span class="box_hijau">TOPIC Anda</span><br>
                         <small class="box_pinkmuda"><?= $user[0]["kategori"] ?> </small><br>
                         <small ><?= $user[0]["username_topic"] ?> </small><br>
                         <textarea name="new_topic"><?= htmlspecialchars($user[0]["topic"]) ?></textarea>

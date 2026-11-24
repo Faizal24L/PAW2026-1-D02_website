@@ -56,7 +56,7 @@
             <?php if($_SESSION['id_role'] == 2): ?>
                 <div class="box">
                     <small class="box_pinkmuda"><?= $top["kategori"] ?></small><br>
-                    <small>oleh: @<?= $top["username"]?></small>
+                    <small>oleh: @<?= $top["username"]?></small><br>
                     <a href="../expert/reply.php?id_topic=<?= $top['id_topic'] ?>"><?= htmlspecialchars($top['topic']) ?></a>
                 </div>
             <?php else:?>

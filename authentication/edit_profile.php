@@ -54,30 +54,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Kelola Profile</title>
 </head>
 <body>
-    <h1>KELOLA PROFILE</h1>
-    <form method="POST" action="edit_profile.php">
-        <label>USER NAME: </label>
-        <input type="text" name="new_username" value="<?= htmlspecialchars($user['username'])?>">
-        <span style="color:red"><?=$errors['username']??""?></span><br>
+    <!-- header -->
+    <?php require "../component/header.php";?>
 
-        <label>TELEPON: </label>
-        <input type="text" name="new_telepon" value="<?= htmlspecialchars($user['telepon'])?>">
-        <span style="color:red"><?=$errors['nomor']??""?></span><br>
+    <div class="content">
+        <div class="box_tengah">
+            <a href="./profile.php">Kembali ke Profile</a>
+            <div class="box_form_atas">
+                <h1>KELOLA PROFILE</h1>
+                <small>Perbarui informasi pribadi dan keamanan akun Anda</small>
+            </div>
+            <div class="box_form">
+                <form method="POST" action="edit_profile.php">
+                    <label>USER NAME: </label>
+                    <input type="text" name="new_username" value="<?= htmlspecialchars($user['username'])?>">
+                    <span style="color:red"><?=$errors['username']??""?></span><br>
 
-        <label>TANGGAL LAHIR: </label>
-        <input type="date" name="new_tanggal_lahir" value="<?= htmlspecialchars($user['tanggal_lahir'])?>">
-        <span style="color:red"><?=$errors['tanggal_lahir']??""?></span><br>
+                    <label>TELEPON: </label>
+                    <input type="text" name="new_telepon" value="<?= htmlspecialchars($user['telepon'])?>">
+                    <span style="color:red"><?=$errors['nomor']??""?></span><br>
 
-        <label>PASSWORD: </label>
-        <input type="password" name="new_password" value="">
-        <span style="color:red"><?=$errors['password']??""?></span><br>
+                    <label>TANGGAL LAHIR: </label>
+                    <input type="date" name="new_tanggal_lahir" value="<?= htmlspecialchars($user['tanggal_lahir'])?>">
+                    <span style="color:red"><?=$errors['tanggal_lahir']??""?></span><br>
 
-        <input type="submit" name="kirim" value="kirim">
-    </form>
+                    <label>PASSWORD: </label>
+                    <input type="password" name="new_password" value="">
+                    <span style="color:red"><?=$errors['password']??""?></span><br>
 
-    <a href="./profile.php">batal</a>
+                    <button type="submit" name="kirim">Kirim</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
+    <!-- footer -->
+    <?php require "../component/footer.php";?>
+</body>
 </html>

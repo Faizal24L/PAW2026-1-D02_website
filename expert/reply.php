@@ -56,7 +56,7 @@
     $query->execute();
     
     $user = $query->fetchAll();
-    var_dump($user);
+    // var_dump($user);
     // exit();
 ?>
 
@@ -65,6 +65,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Topic</title>
 </head>
 <body>
@@ -73,40 +74,48 @@
 
     <!-- content -->
     <div class="content">
-        <div class="box">
-            <p>@<?= $user[0]["username_topic"]?></p>
-            <p><?= $user[0]["topic"] ?></p>
-            <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
-                <label>Penjelasan / Jawaban Anda Sebagai Expert</label><br>
-                <textarea name="reply" placeholder="Tulis balasan..."></textarea>
-                <button type="submit" name="submit_reply">Kirim</button>
-            </form>
-        </div>
-        <?php foreach($user as $row): ?>
-            <!-- Ubah $user menjadi $row (variabel perulangan) -->
-            <?php if(!empty($row['id_reply'])): ?>
-                <?php if($row['id_user'] == $_SESSION['id_user']): ?>
-                    <!-- Isi string kosong dengan 'reply' -->
-                    <div class="box">
-                        <span>@<?= $row['username_reply']?></span>
-                        <span>Balasan Anda</span>
-                        <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
-                            <input type="hidden" name="id_reply" value="<?= htmlspecialchars($row['id_reply']) ?>">
-                            <textarea name="new_reply"><?= htmlspecialchars($row["reply"]) ?></textarea>
-                            <button type="submit" name="edit_reply">Edit</button>
-                        </form>
-                    </div>
-                <?php else: ?>
-                    <!-- Isi string kosong dengan 'reply' -->
-                    <div class="box">
-                        <span>@<?= $row['username_reply']?></span>
-                        <p><?= htmlspecialchars($row['reply']) ?></p>
-                    </div>
+        <div class="box_tengah">
+            <a href="./dashboard_expert.php"><< kembali ke Halaman utama</a>
+            <div class="box">
+                <span class="box_hijau">TOPIC</span>
+                <small class="box_pinkmuda"><?= $user[0]["kategori"] ?> </small><br>
+                <small>@<?= $user[0]["username_topic"] ?> </small><br>
+                <h1 class="box"><?= $user[0]["topic"] ?></h1>
+            </div>
+            <div class="box">
+                <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
+                    <label>Penjelasan / Jawaban Anda Sebagai Expert</label><br>
+                    <textarea name="reply" placeholder="Tulis balasan..."></textarea>
+                    <button type="submit" name="submit_reply">Kirim</button>
+                </form>
+            </div>
+            <p><b>Jawaban dari pakar</b></p>
+            <?php foreach($user as $row): ?>
+                <!-- Ubah $user menjadi $row (variabel perulangan) -->
+                <?php if(!empty($row['id_reply'])): ?>
+                    <?php if($row['id_user'] == $_SESSION['id_user']): ?>
+                        <!-- Isi string kosong dengan 'reply' -->
+                        <div class="box">
+                            <span>@<?= $row['username_reply']?></span>
+                            <span>Balasan Anda</span>
+                            <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
+                                <input type="hidden" name="id_reply" value="<?= htmlspecialchars($row['id_reply']) ?>">
+                                <textarea name="new_reply"><?= htmlspecialchars($row["reply"]) ?></textarea>
+                                <button type="submit" name="edit_reply">Edit</button>
+                            </form>
+                        </div>
+                    <?php else: ?>
+                        <!-- Isi string kosong dengan 'reply' -->
+                        <div class="box">
+                            <span>@<?= $row['username_reply']?></span>
+                            <p><?= htmlspecialchars($row['reply']) ?></p>
+                        </div>
+                    <?php endif; ?>
                 <?php endif; ?>
-            <?php endif; ?>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
     </div>
-
+        
     <!-- footer -->
     <?php require "../component/footer.php";?>
 </body>
