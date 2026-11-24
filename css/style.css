@@ -46,6 +46,15 @@ img {
   width: 50px;
 }
 
+/* tulisan */
+.putih {
+  color: white;
+}
+
+.pinktua {
+  color: #ff6b8b;
+}
+
 /* box */
 .box,
 .box_awal,
@@ -98,11 +107,13 @@ img {
 }
 
 .box_form_atas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #14532d;
-  color: white;
+  color: #fadadd;
   border-radius: 25px 25px 0 0;
   padding: 20px;
-  box-sizing: border-box;
 }
 
 .box_form {

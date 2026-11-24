@@ -6,7 +6,7 @@
     <!-- header halaman publik -->
     <?php if (!isset($_SESSION["isLogin"])):?>
         <div>
-            <img src="./gambar/logo.jpg" alt="logo">
+            <img src="./gambar/logo.png" alt="logo">
             <img src="./gambar/logo_name.jpg" alt="logo tulisan">
         </div>
         <div>
@@ -18,7 +18,7 @@
     <!-- header halaman private -->
     <?php else:?>
         <div>
-            <img src="../gambar/logo.jpg" alt="logo">
+            <img src="../gambar/logo.png" alt="logo">
             <img src="../gambar/logo_name.jpg" alt="logo tulisan">
         </div>
         <div>

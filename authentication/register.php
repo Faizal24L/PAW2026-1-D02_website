@@ -48,36 +48,46 @@
     <!-- header -->
     <?php require "../component/header.php";?>
 
-    <h1>Buat Akun Baru</h1>
-    <span>Bergabunglah sebagai Pelajar atau Pengajar</span>
+    <div class="content">
+        <div class="box_tengah">
+            <div class="box_form_atas">
+                <div>
+                    <h1 class="putih">Buat Akun Baru</h1>
+                    <span>Bergabunglah sebagai Pelajar atau Pengajar</span>
+                </div>
+            </div>
+            <div class="box_form">
+                <form method="POST" action="">
+                    <label>USERNAME</label><br>
+                    <input type="text" name="username" placeholder="contoh: Prabowo" value="<?= isset($errors['username']) && isset($_POST['username'])? $_POST['username']:""?>">
+                    <span style="color:red"><?=$errors['username']??""?></span>
 
-    <form method="POST" action="">
-        <label>USERNAME</label><br>
-        <input type="text" name="username" placeholder="contoh: Prabowo" value="<?= isset($errors['username']) && isset($_POST['username'])? $_POST['username']:""?>">
-        <span style="color:red"><?=$errors['username']??""?></span>
+                    <br><label>PASSWORD</label><br>
+                    <input type="password" name="password" placeholder="Minimal 8 Karakter" value="<?= isset($errors['password']) && isset($_POST['password'])? $_POST['password']:""?>">
+                    <span style="color:red"><?=$errors['password']??""?></span>
 
-        <br><label>PASSWORD</label><br>
-        <input type="password" name="password" placeholder="Minimal 8 Karakter" value="<?= isset($errors['password']) && isset($_POST['password'])? $_POST['password']:""?>">
-        <span style="color:red"><?=$errors['password']??""?></span>
+                    <br><label>NO. TELEPON</label><br>
+                    <input type="text" name="telepon" placeholder="08xxxxxxxxxx" value="<?= isset($errors['telepon']) && isset($_POST['telepon'])? $_POST['telepon']:""?>">
+                    <span style="color:red"><?=$errors['telepon']??""?></span>
 
-        <br><label>NO. TELEPON</label><br>
-        <input type="text" name="telepon" placeholder="08xxxxxxxxxx" value="<?= isset($errors['telepon']) && isset($_POST['telepon'])? $_POST['telepon']:""?>">
-        <span style="color:red"><?=$errors['telepon']??""?></span>
+                    <br><label>TANGGAL LAHIR</label><br>
+                    <input type="date" name="tanggal_lahir" value="<?= isset($errors['tanggal_lahir']) && isset($_POST['tanggal_lahir'])? $_POST['tanggal_lahir']:""?>">
+                    <span style="color:red"><?=$errors['tanggal Lahir']??""?></span>
 
-        <br><label>TANGGAL LAHIR</label><br>
-        <input type="date" name="tanggal_lahir" value="<?= isset($errors['tanggal_lahir']) && isset($_POST['tanggal_lahir'])? $_POST['tanggal_lahir']:""?>">
-        <span style="color:red"><?=$errors['tanggal Lahir']??""?></span>
+                    <br>
+                    <label for="id_role">PILIH ROLE:</label>
+                    <select name="id_role">
+                        <option value="1">USER</option>
+                        <option value="2">PAKAR</option>
+                    </select>
+                    <span style="color:red"><?=$errors['tanggal Lahir']??""?></span>
 
-        <br>
-        <label for="id_role">PILIH ROLE:</label>
-        <select name="id_role">
-            <option value="1">USER</option>
-            <option value="2">PAKAR</option>
-        </select>
-
-        <br><button type="submit">Daftar!</button>
-    </form>
-    <p>Sudah punya Akun? <a href="./login.php">Login di sini</a></p>
+                    <br><button type="submit">Daftar!</button>
+                </form>
+                <p>Sudah punya Akun? <a href="./login.php">Login di sini</a></p>
+            </div>
+        </div>
+    </div>
 
     <!-- footer -->
     <?php require "../component/footer.php";?>

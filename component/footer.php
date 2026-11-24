@@ -1,7 +1,7 @@
 <div class="footer">
     <!-- footer halaman publik -->
     <?php if (!isset($_SESSION["isLogin"])):?>
-        <img src="./gambar/logo.jpg" alt="logo">
+        <img src="./gambar/logo.png" alt="logo">
         <div>
             <img src="./gambar/logo_name.jpg" alt="logo tulisan"><br>
             <small>Ruang Konsultasi Karya ilmian / penelitian Terpercaya</small>
@@ -13,7 +13,7 @@
 
     <!-- footer halaman private -->
     <?php else:?>
-        <img src="../gambar/logo.jpg" alt="logo">
+        <img src="../gambar/logo.png" alt="logo">
         <div>
             <img src="../gambar/logo_name.jpg" alt="logo tulisan"><br>
             <small>Ruang Konsultasi Karya ilmian / penelitian Terpercaya</small>

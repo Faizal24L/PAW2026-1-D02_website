@@ -2,8 +2,8 @@
     session_start();
     $id_user = $_SESSION["id_user"];
     $id_role = $_SESSION["id_role"];
-    var_dump($id_user);
-    var_dump($id_role);
+    // var_dump($id_user);
+    // var_dump($id_role);
 
     require "../connection/database.php";
     if ($id_role == 1){
@@ -63,7 +63,7 @@
 
     <div class="content">
         <div class="box_tengah">
-            <a href="./profile.php">Kembali ke Profile</a>
+            <a href="./profile.php"><< Kembali ke Profile</a>
             <div class="box_form_atas">
                 <h1>KELOLA PROFILE</h1>
                 <small>Perbarui informasi pribadi dan keamanan akun Anda</small>

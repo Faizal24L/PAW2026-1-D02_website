@@ -60,15 +60,17 @@
     <title>Login</title>
 </head>
 <body>
-     <!-- header -->
+    <!-- header -->
     <?php require "../component/header.php";?>
 
     <!-- content -->
     <div class="content">
         <div class="box_tengah">
             <div class="box_form_atas">
-                <h1>Selamat Datang Kembali</h1>
-                <small>Masuk ke akun ResearchMate unutk melanjutkan diskusi</small>
+                <div>
+                    <h1 class="putih">Selamat Datang Kembali</h1>
+                    <span>Masuk ke akun ResearchMate unutk melanjutkan diskusi</span>
+                </div>
             </div>
             <div class="box_form">
                 <form method="POST" action="login.php">
@@ -84,11 +86,9 @@
                 </form>
                 
                 <span><?=$error??""?></span>
+                <p>Belum punya akun? <a href="register.php">Daftar</a></p>
             </div>
         </div>
-        
-
-        <p>Belum punya akun? <a href="register.php">Daftar</a></p>
     </div>
 
     <!-- footer -->
