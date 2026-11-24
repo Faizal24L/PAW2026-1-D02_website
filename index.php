@@ -59,7 +59,7 @@
             <div class="box_kat">
                 <!-- filter kategori -->
                 <div>
-                    <h2 class="box_putih"><span class="box_pinkmuda">Kategori</span> Topik Diskusi</h2>
+                    <h2 class="box_putih"><span class="box_pinkmuda">Kategori</span> Untuk Topik Diskusi</h2>
                     <small>Jelajahi pertanyaan dari pelajar. Masuk untuk membuka kunci jawaban pakar.</small>
                 </div>
                 <form action="index.php" method="GET">
@@ -77,7 +77,7 @@
             <?php if (count($topik) > 0): ?>
                 <?php foreach ($topik as $top): ?>
                     <div class="box">
-                        <small><?= $top["kategori"] ?></small><br>
+                        <small class="box_pinkmuda"><?= $top["kategori"] ?></small><br>
                         <small><?= $top["username"]?></small><br>
                         <a href="./authentication/login.php" class="box_topik"><?= $top['topic'] ?></a>
                     </div>

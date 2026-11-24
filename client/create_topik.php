@@ -38,7 +38,7 @@
             <div class="box_tengah">
                 <a href="dashboard_client.php"><< Kembali ke Dashboard</a>
                 <div class="box_form_atas">
-                    <h1>Buat Topik Diskusi Baru</h1>
+                    <h1 class="putih">Buat Topik Diskusi Baru</h1>
                     <small>Tuliskan pertanyaan dengan jelas agar para expert dapat membantu</small>
                 </div>
                 <div class="box_form">

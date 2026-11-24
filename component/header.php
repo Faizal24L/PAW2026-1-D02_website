@@ -9,7 +9,7 @@
             
             <div>
                 <img src="./gambar/logo.png" alt="logo">
-                <img src="./gambar/logo_name.jpg" alt="logo tulisan">
+                <img src="./gambar/logo_name.png" alt="logo tulisan" class="logo_header">
             </div>
             <div>
                 <a href="./index.php">Home</a>
@@ -19,7 +19,7 @@
         <?php else:?>
             <div>
                 <img src="../gambar/logo.png" alt="logo">
-                <img src="../gambar/logo_name.jpg" alt="logo tulisan">
+                <img src="../gambar/logo_name.png" alt="logo tulisan" class="logo_header">
             </div>
             <div>
                 <a href="../index.php">Home</a>
@@ -32,7 +32,7 @@
     <?php else:?>
         <div>
             <img src="../gambar/logo.png" alt="logo">
-            <img src="../gambar/logo_name.jpg" alt="logo tulisan">
+            <img src="../gambar/logo_name.png" alt="logo tulisan" class="logo_header">
         </div>
         <div>
             <?php if($_SESSION['id_role'] == 1): ?>

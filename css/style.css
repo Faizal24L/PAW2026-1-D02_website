@@ -46,6 +46,14 @@ img {
   width: 50px;
 }
 
+.logo_header {
+  width: 250px;
+}
+
+.logo_footer {
+  width: 200px;
+}
+
 /* tulisan */
 .putih {
   color: white;
@@ -108,6 +116,7 @@ img {
 
 .box_form_atas {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #14532d;
@@ -142,7 +151,6 @@ img {
   border-radius: 10px;
   text-decoration: none;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  border: none;
 }
 
 .box_pinkmuda {
@@ -150,7 +158,9 @@ img {
   color: #14532d;
 }
 
-.box_hijau {
+.box_hijau,
+.box_hijau a {
+  text-decoration: none;
   background-color: #14532d;
   color: white;
 }
@@ -219,9 +229,9 @@ textarea {
 }
 
 button {
+  border: none;
   background-color: #ff6b8b;
   color: white;
-  border: none;
   padding: 10px 15px;
   border-radius: 15px;
   font-size: 15px;

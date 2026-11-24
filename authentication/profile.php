@@ -40,18 +40,18 @@
                 <a href="../client/dashboard_client.php"><< Kembali ke Halaman Utama</a>
             <?php endif;?>
             <div class="box_form_atas">
-                <h1><?= htmlspecialchars($user["username"])?></h1>
+                <h1 class="putih"><?= htmlspecialchars($user["username"])?></h1>
                 <?php if($_SESSION["id_role"] == 1):?>
-                    <span class="box_pinkmuda">Client / Pelajar</span>
+                    <small class="box_pinkmuda">Client / Pelajar</small>
                 <?php else:?>
-                    <span class="box_pinkmuda">Expert / Pakar</span>
+                    <small class="box_pinkmuda">Expert / Pakar</small>
                 <?php endif?>
             </div>
             <div class="box_form">
-                <div class="box">NAMA: <?= htmlspecialchars($user["username"])?></div>
-                <div>NOMOR TELEPON: <?= htmlspecialchars($user["telepon"])?></div>
-                <div>TANGGAL LAHIR: <?= htmlspecialchars($user["tanggal_lahir"])?></div>
-                <a href="./edit_profile.php?id_role=<?= $id_role ?>">kelola profile</a>
+                <div class="box"><b>NAMA: <br><?= htmlspecialchars($user["username"])?></b></div>
+                <div class="box"><b>NOMOR TELEPON: <br><?= htmlspecialchars($user["telepon"])?></b></div>
+                <div class="box"><b>TANGGAL LAHIR: <br><?= htmlspecialchars($user["tanggal_lahir"])?></b></div>
+                <a href="./edit_profile.php?id_role=<?= $id_role ?>" class="box_pinktua">kelola profile</a>
             </div>
         </div>
     </div>

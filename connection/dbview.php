@@ -23,7 +23,7 @@
     <!-- filter kategori -->
     <div class="box_kat">
         <div>
-            <h2 class="box_putih"><span class="box_pinkmuda">Kategori</span> Topik Diskusi</h2>
+            <h2 class="box_putih"><span class="box_pinkmuda">Kategori</span> Untuk Topik Diskusi</h2>
             <small>Jelajahi pertanyaan dari pelajar serta jawaban pakar</small>
         </div>
         <?php if ($id_role == 2):?>

@@ -65,7 +65,7 @@
         <div class="box_tengah">
             <a href="./profile.php"><< Kembali ke Profile</a>
             <div class="box_form_atas">
-                <h1>KELOLA PROFILE</h1>
+                <h1 class="putih">KELOLA PROFILE</h1>
                 <small>Perbarui informasi pribadi dan keamanan akun Anda</small>
             </div>
             <div class="box_form">
