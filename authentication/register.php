@@ -61,19 +61,19 @@
                 <form method="POST" action="">
                     <label>USERNAME</label>
                     <input type="text" name="username" placeholder="contoh: Prabowo" value="<?= isset($errors['username']) && isset($_POST['username'])? $_POST['username']:""?>">
-                    <span style="color:red"><?=$errors['username']??""?></span>
+                    <span class="error"><?=$errors['username']??""?></span>
 
                     <label>PASSWORD</label>
                     <input type="password" name="password" placeholder="Minimal 8 Karakter" value="<?= isset($errors['password']) && isset($_POST['password'])? $_POST['password']:""?>">
-                    <span style="color:red"><?=$errors['password']??""?></span>
+                    <span class="error"><?=$errors['password']??""?></span>
 
                     <label>NO. TELEPON</label>
                     <input type="text" name="telepon" placeholder="08xxxxxxxxxx" value="<?= isset($errors['telepon']) && isset($_POST['telepon'])? $_POST['telepon']:""?>">
-                    <span style="color:red"><?=$errors['telepon']??""?></span>
+                    <span class="error"><?=$errors['telepon']??""?></span>
 
                     <label>TANGGAL LAHIR</label>
                     <input type="date" name="tanggal_lahir" value="<?= isset($errors['tanggal_lahir']) && isset($_POST['tanggal_lahir'])? $_POST['tanggal_lahir']:""?>">
-                    <span style="color:red"><?=$errors['tanggal_lahir']??""?></span>
+                    <span class="error"><?=$errors['tanggal_lahir']??""?></span>
 
                     
                     <label for="id_role">PILIH ROLE:</label>

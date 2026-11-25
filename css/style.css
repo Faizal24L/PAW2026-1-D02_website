@@ -66,6 +66,10 @@ img {
   color: #ff6b8b;
 }
 
+.error {
+  color: red;
+}
+
 /* box */
 .box,
 .box_awal,
