@@ -79,7 +79,7 @@
             <div class="box">
                 <span class="box_hijau">TOPIC</span>
                 <small class="box_pinkmuda"><?= $user[0]["kategori"] ?> </small><br>
-                <small>@<?= $user[0]["username_topic"] ?> </small><br>
+                <small><?= $user[0]["username_topic"] ?> </small><br>
                 <h1 class="box"><?= $user[0]["topic"] ?></h1>
             </div>
             <div class="box">
@@ -96,7 +96,7 @@
                     <?php if($row['id_user'] == $_SESSION['id_user']): ?>
                         <!-- Isi string kosong dengan 'reply' -->
                         <div class="box">
-                            <span>@<?= $row['username_reply']?></span>
+                            <span><?= $row['username_reply']?></span>
                             <span>Balasan Anda</span>
                             <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
                                 <input type="hidden" name="id_reply" value="<?= htmlspecialchars($row['id_reply']) ?>">
@@ -107,7 +107,7 @@
                     <?php else: ?>
                         <!-- Isi string kosong dengan 'reply' -->
                         <div class="box">
-                            <span>@<?= $row['username_reply']?></span>
+                            <span><?= $row['username_reply']?></span>
                             <p><?= htmlspecialchars($row['reply']) ?></p>
                         </div>
                     <?php endif; ?>

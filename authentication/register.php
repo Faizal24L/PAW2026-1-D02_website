@@ -81,7 +81,6 @@
                         <option value="1">USER</option>
                         <option value="2">PAKAR</option>
                     </select>
-                    <span style="color:red"><?=$errors['tanggal_lahir']??""?></span>
 
                     <br><button type="submit">Daftar!</button>
                 </form>

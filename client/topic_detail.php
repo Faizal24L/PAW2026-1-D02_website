@@ -67,7 +67,7 @@
                     <form action="topic_detail.php?id_topic=<?= $IDtopic ?>" method="POST" class="box">
                         <span class="box_hijau">TOPIC Anda</span><br>
                         <small class="box_pinkmuda"><?= htmlspecialchars($user[0]["kategori"]) ?> </small><br>
-                        <small >@<?= htmlspecialchars($user[0]["username_topic"]) ?> </small><br>
+                        <small ><?= htmlspecialchars($user[0]["username_topic"]) ?> </small><br>
                         <textarea name="new_topic"><?= htmlspecialchars($user[0]["topic"]) ?></textarea>
                         <button type="submit" name="edit_topic">edit</button>
                     </form>
@@ -75,14 +75,14 @@
                     <div class="box">
                         <span class="box_hijau">TOPIC</span>
                         <small class="box_pinkmuda"><?= htmlspecialchars($user[0]["kategori"]) ?> </small><br>
-                        <small>@<?= htmlspecialchars($user[0]["username_topic"]) ?> </small><br>
+                        <small><?= htmlspecialchars($user[0]["username_topic"]) ?> </small><br>
                         <h2><?= htmlspecialchars($user[0]["topic"]) ?></h2>
                     </div>
                 <?php endif; ?>
                 <p><b>Jawaban dari pakar</b></p>
                 <?php foreach($user as $row): ?>
                     <div class="box">
-                        <small>@<?= htmlspecialchars($row["username_reply"]) ?> </small><br>
+                        <small><?= htmlspecialchars($row["username_reply"]) ?> </small><br>
                         <?= htmlspecialchars($row['reply']) ?>
                     </div>
                 <?php endforeach; ?>
