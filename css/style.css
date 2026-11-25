@@ -214,8 +214,7 @@ img {
   margin: 5px;
 }
 
-.header a:hover,
-.header a.active {
+.header a:hover {
   color: white;
   background-color: #ff6b8b;
   border-radius: 10px;

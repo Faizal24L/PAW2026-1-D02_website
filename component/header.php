@@ -1,8 +1,4 @@
 <div class="header">
-    <?php
-        $halaman = basename($_SERVER['PHP_SELF']);
-    ?>
-
     <!-- header halaman publik -->
     <?php if (!isset($_SESSION["isLogin"])):?>
         <?php if ($header == "index"):?>
