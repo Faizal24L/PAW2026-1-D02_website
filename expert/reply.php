@@ -25,6 +25,8 @@
             $query->bindValue(":id_topic", $IDtopic);
             $query->bindValue(":id_user", $id_user);
             $query->execute();
+
+            header("Location: dashboard_expert.php");
         }
     }
 
@@ -43,6 +45,8 @@
         $update -> bindValue(":id_reply", $id_reply);
         $update -> bindValue(":id_user", $id_user);
         $update -> execute();
+
+        header("Location: dashboard_expert.php");
     }
 
 
@@ -66,12 +70,10 @@
     $query->execute();
     
     $user = $query->fetchAll();
-    // var_dump($user);
-    // exit();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,7 +88,7 @@
     <div class="content">
         <!-- navigasi -->
         <div class="box_tengah_reply">
-            <a href="./dashboard_expert.php"><< kembali ke Halaman utama</a>
+            <a href="./dashboard_expert.php">kembali ke Halaman utama</a>
 
             <!-- bagian penampilan topik -->
             <div class="box">

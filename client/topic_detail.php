@@ -47,7 +47,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,7 +63,7 @@
         <div class="content">
             <!-- navigasi -->
             <div class="box_tengah_topik">
-                <a href="./dashboard_client.php"><< kembali ke Halaman utama</a>
+                <a href="./dashboard_client.php">kembali ke Halaman utama</a>
 
                 <!-- mengecek apakah topik yang ada di halmaan milik user yang ada di session -->
                 <?php if($user[0]['id_user'] == $_SESSION['id_user']): ?>
