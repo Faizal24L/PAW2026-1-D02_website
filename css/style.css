@@ -114,10 +114,18 @@ img {
   box-sizing: border-box;
 }
 
-.box_tengah a {
+.box_tengah a,
+.box_tengah_topik a {
   color: #14532d;
   text-decoration: none;
   font-weight: bold;
+}
+
+.box_tengah_topik {
+  width: 80%;
+  margin: 35px auto;
+  color: #14532d;
+  box-sizing: border-box;
 }
 
 .box_form_atas {

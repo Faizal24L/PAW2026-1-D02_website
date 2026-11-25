@@ -61,7 +61,7 @@
 
         <!-- content -->
         <div class="content">
-            <div class="box_tengah">
+            <div class="box_tengah_topik">
                 <a href="./dashboard_client.php"><< kembali ke Halaman utama</a>
                 <?php if($user[0]['id_user'] == $_SESSION['id_user']): ?>
                     <form action="topic_detail.php?id_topic=<?= $IDtopic ?>" method="POST" class="box">
