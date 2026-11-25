@@ -1,5 +1,6 @@
 <?php
     session_start();
+    // koneksi
     require "../connection/permission_expert.php";
     require "../connection/database.php";
     require "../authentication/validasi.php";
@@ -9,6 +10,7 @@
 
     $errors = [];
 
+    // berjalan jika expert mengirim reply topik
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_reply"])){
         $reply = $_POST['reply'];
 
@@ -26,6 +28,7 @@
         }
     }
 
+    // berjalan jika expert mengirim editan dari reply
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_reply"])){
         $new_reply = $_POST["new_reply"];
         $id_reply = $_POST["id_reply"];
@@ -43,7 +46,7 @@
     }
 
 
-
+    // menampilkan topik yang di klik sebelumnya
     $sql = "SELECT 
                 topics.topic,
                 user_topic.username AS username_topic,
@@ -81,14 +84,19 @@
 
     <!-- content -->
     <div class="content">
+        <!-- navigasi -->
         <div class="box_tengah_reply">
             <a href="./dashboard_expert.php"><< kembali ke Halaman utama</a>
+
+            <!-- bagian penampilan topik -->
             <div class="box">
                 <span class="box_hijau">TOPIC</span>
                 <small class="box_pinkmuda"><?= $user[0]["kategori"] ?> </small><br>
                 <small><?= $user[0]["username_topic"] ?> </small><br>
                 <h1 class="box"><?= $user[0]["topic"] ?></h1>
             </div>
+
+            <!-- form buat membalas topik -->
             <div class="box">
                 <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
                     <label>Penjelasan / Jawaban Anda Sebagai Expert</label><br>
@@ -97,13 +105,16 @@
                     <button type="submit" name="submit_reply">Kirim</button>
                 </form>
             </div>
+
+            <!-- bagian jawaban jawaban expert -->
             <p><b>Jawaban dari pakar</b></p>
             <?php foreach($user as $row): ?>
                 <!-- Ubah $user menjadi $row (variabel perulangan) -->
                 <?php if(!empty($row['id_reply'])): ?>
+                    <!-- jika reply punya user yanga ada di session, bisa ngedit -->
                     <?php if($row['id_user'] == $_SESSION['id_user']): ?>
-                        <!-- Isi string kosong dengan 'reply' -->
                         <div class="box">
+                            <!-- Isi string kosong dengan 'reply' -->
                             <span><?= $row['username_reply']?></span>
                             <span>Balasan Anda</span>
                             <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
@@ -112,6 +123,8 @@
                                 <button type="submit" name="edit_reply">Edit</button>
                             </form>
                         </div>
+
+                    <!-- jika reply bukan punya user di session -->
                     <?php else: ?>
                         <!-- Isi string kosong dengan 'reply' -->
                         <div class="box">

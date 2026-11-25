@@ -61,9 +61,13 @@
 
         <!-- content -->
         <div class="content">
+            <!-- navigasi -->
             <div class="box_tengah_topik">
                 <a href="./dashboard_client.php"><< kembali ke Halaman utama</a>
+
+                <!-- mengecek apakah topik yang ada di halmaan milik user yang ada di session -->
                 <?php if($user[0]['id_user'] == $_SESSION['id_user']): ?>
+                    <!-- jika iya, bisa ngedit topik -->
                     <form action="topic_detail.php?id_topic=<?= $IDtopic ?>" method="POST" class="box">
                         <span class="box_hijau">TOPIC Anda</span>
                         <small class="box_pinkmuda"><?= htmlspecialchars($user[0]["kategori"]) ?> </small><br>
@@ -72,6 +76,7 @@
                         <button type="submit" name="edit_topic">edit</button>
                     </form>
                 <?php else: ?>
+                    <!-- jika tidak, ga bisa edit topik -->
                     <div class="box">
                         <span class="box_hijau">TOPIC</span>
                         <small class="box_pinkmuda"><?= htmlspecialchars($user[0]["kategori"]) ?> </small><br>
@@ -79,6 +84,8 @@
                         <h2><?= htmlspecialchars($user[0]["topic"]) ?></h2>
                     </div>
                 <?php endif; ?>
+
+                <!-- jawaban dari pakar -->
                 <p><b>Jawaban dari pakar</b></p>
                 <?php foreach($user as $row): ?>
                     <div class="box">

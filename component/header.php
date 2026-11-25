@@ -1,8 +1,9 @@
 <div class="header">
     <!-- header halaman publik -->
     <?php if (!isset($_SESSION["isLogin"])):?>
+
+        <!-- jika di halamn index -->
         <?php if ($header == "index"):?>
-            
             <div>
                 <img src="./gambar/logo.png" alt="logo">
                 <img src="./gambar/logo_name.png" alt="logo tulisan" class="logo_header">
@@ -12,6 +13,8 @@
                 <a href="./authentication/login.php">Login</a>
                 <a href="./authentication/register.php">Daftar</a>
             </div>
+            
+        <!-- jika bukan di halaman index -->
         <?php else:?>
             <div>
                 <img src="../gambar/logo.png" alt="logo">

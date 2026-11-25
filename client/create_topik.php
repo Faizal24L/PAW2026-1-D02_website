@@ -1,11 +1,14 @@
 <?php
     session_start();
+    // koneksi
     require "../connection/permission_client.php";
     require "../connection/database.php";
     require "../authentication/validasi.php";
 
+    // penampungan error
     $errors = [];
 
+    // berjalan jika user mengklik tombol submit
     if($_SERVER["REQUEST_METHOD"] === "POST"){
         
         $topic = $_POST['topic'];
@@ -42,14 +45,18 @@
 
         <!-- content -->
         <div class="content">
+            <!-- navigasi -->
             <div class="box_tengah">
                 <a href="dashboard_client.php"><< Kembali ke Dashboard</a>
+
+                <!-- form membuat topik -->
                 <div class="box_form_atas">
                     <h1 class="putih">Buat Topik Diskusi Baru</h1>
                     <small>Tuliskan pertanyaan dengan jelas agar para expert dapat membantu</small>
                 </div>
                 <div class="box_form">
-                    <form method="POST" action="">
+                    <!-- tentukan kategori -->
+                    <form method="POST" action="create_topik.php">
                         <label for="id_kategori">KATEGORI MATA PELAJARAN / BIDANG:</label>
                         <select name="id_kategori" id="id_kategori">
                             <option value="1">Penentuan Topik</option>
@@ -59,11 +66,13 @@
                             <option value="5">Referensi dan Sitasi</option>
                             <option value="6">Publikasi Ilmiah</option>
                         </select>
-
+                        
+                        <!-- textarea tulis topik -->
                         <label for="topic">DETAIL PERTANYAAN</label>
                         <textarea name="topic" id="topic"></textarea>
                         <span class="error"><?=$errors['topic']??""?></span>
 
+                        <!-- submit -->
                         <button type="submit">Publikasi</button>
                     </form>
                 </div>

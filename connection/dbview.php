@@ -26,7 +26,10 @@
             <h2 class="box_putih"><span class="box_pinkmuda">Kategori</span> Untuk Topik Diskusi</h2>
             <small>Jelajahi pertanyaan dari pelajar serta jawaban pakar</small>
         </div>
+
+        <!-- pengecekan role apakah dia expert atau client -->
         <?php if ($id_role == 2):?>
+        <!-- jika expert, form di submit ke dasboard expert -->
         <form action="dashboard_expert.php" method="GET">
             <select name="kategori">
                 <option value="">semua kategori</option>
@@ -37,6 +40,7 @@
             <button type="submit">filter</button>
         </form>
         <?php else:?>
+            <!-- jika client, form di submit ke dasboard client -->
             <form action="dashboard_client.php" method="GET">
                 <select name="kategori">
                     <option value="">semua kategori</option>
@@ -54,13 +58,16 @@
         <?php foreach ($topik as $top):?>
             <!-- pengarahan ke halaman lanjutan jika klik topik -->
             <?php if($_SESSION['id_role'] == 2): ?>
+                <!-- unutk role expert -->
                 <div class="box">
                     <small class="box_pinkmuda"><?= $top["kategori"] ?></small><br>
                     <small>oleh: @<?= $top["username"]?></small><br>
                     <a href="../expert/reply.php?id_topic=<?= $top['id_topic'] ?>"><?= htmlspecialchars($top['topic']) ?></a>
                 </div>
             <?php else:?>
+                <!-- untuk role client -->
                 <?php if ($_SESSION['id_user'] == $top['id_user']):?>
+                    <!-- jika di topiknya punya user di session -->
                     <div class="box">
                         <small class="box_pinkmuda"><?= $top["kategori"] ?></small>
                         <small class="box_hijau">Topic Anda</small><br>
@@ -68,6 +75,7 @@
                         <a href="../client/topic_detail.php?id_topic=<?= $top['id_topic'] ?>"><?= htmlspecialchars($top['topic']) ?></a>
                     </div>
                 <?php else:?>
+                    <!-- jika di topiknya bukan punya user di session -->
                     <div class="box">
                         <small class="box_pinkmuda"><?= $top["kategori"] ?></small><br>
                         <small>oleh: @<?= $top["username"]?></small><br>

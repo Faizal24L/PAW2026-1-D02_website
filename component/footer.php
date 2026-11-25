@@ -1,6 +1,8 @@
 <div class="footer">
     <!-- footer halaman publik -->
     <?php if (!isset($_SESSION["isLogin"])):?>
+        
+        <!-- jika di halamn index -->
         <?php if ($header == "index"):?>
             <img src="./gambar/logo.png" alt="logo">
             <div>
@@ -11,6 +13,8 @@
             <a href="./authentication/login.php">Login</a>
             <a href="./authentication/register.php">Daftar</a>
             <span>@ 2026 ReasearchMate website Indonesia<br>Dirancang unutk membantu Mahasiswa</span>
+        
+        <!-- jika bukan di halaman index -->
         <?php else:?>
             <img src="../gambar/logo.png" alt="logo">
             <div>
@@ -22,6 +26,7 @@
             <a href="../authentication/register.php">Daftar</a>
             <span>@ 2026 ReasearchMate website Indonesia<br>Dirancang unutk membantu Mahasiswa</span>
         <?php endif;?>
+
     <!-- footer halaman private -->
     <?php else:?>
         <img src="../gambar/logo.png" alt="logo">
