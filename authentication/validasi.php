@@ -1,16 +1,19 @@
 
 <?php
+    // validasi untuk agar inputan tidak kosong
     function cekKosong($field){
 		$cek = trim($field);
 		return empty($cek);
 	}
 
+    // validasi membuat topik baru tidak boleh kosong
     function valCreateTopic(&$errors, $field){
         if (cekKosong($field)){
             $errors["topic"] = "topic tidak Boleh kosong";
         }
     }
     
+    // validasi balasan tidak boleh kosong
     function valReply(&$errors, $field){
         if (cekKosong($field)){
             $errors["reply"] = "Balsan tidak Boleh kosong";

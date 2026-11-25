@@ -1,7 +1,10 @@
 <?php
     session_start();
     $id_role = $_SESSION["id_role"];
+    // koneksi database
     require "../connection/database.php";
+
+    // menetukan permission
     if ($id_role == 1){
         require "../connection/permission_client.php";
     } else {
@@ -10,6 +13,7 @@
 
     $id_user = $_SESSION["id_user"];
     
+    // query untuk mengambil record milik user
     $sql = "SELECT username, telepon, tanggal_lahir FROM users WHERE id_user = :id_user";
     $query = $dbc -> prepare($sql);
     $query -> bindValue(":id_user", $id_user);
@@ -34,6 +38,7 @@
     <!-- content -->
     <div class="content">
         <div class="box_tengah">
+            <!-- navigasi milik user/expert -->
             <?php if ($id_role == 2):?>
                 <a href="../expert/dashboard_expert.php"><< Kembali ke Halaman Utama</a>
             <?php else:?>
@@ -48,6 +53,7 @@
                 <?php endif?>
             </div>
             <div class="box_form">
+                <!-- identitas user -->
                 <div class="box_awal"><b>NAMA: <br><?= htmlspecialchars($user["username"])?></b></div>
                 <div class="box_awal"><b>NOMOR TELEPON: <br><?= htmlspecialchars($user["telepon"])?></b></div>
                 <div class="box_awal"><b>TANGGAL LAHIR: <br><?= htmlspecialchars($user["tanggal_lahir"])?></b></div>

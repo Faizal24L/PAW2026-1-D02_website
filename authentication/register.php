@@ -3,6 +3,7 @@
     $header = "register";
     $errors = [];
 
+    // di jalankan ketika user klik daftar
     if($_SERVER["REQUEST_METHOD"] === "POST"){
         $username = $_POST['username'];
         $password =  $_POST['password'];
@@ -10,14 +11,17 @@
         $tanggal_lahir = $_POST['tanggal_lahir'];
         $id_role = $_POST["id_role"];
 
+        // validasi untuk inputan user
         valUsername($errors, $username);
         valPassword($errors, $password);
         valTelepon($errors, $telepon);
         tanggalLahir($errors, $tanggal_lahir);
 
         if(empty($errors)){
+            // koneksi database
             require "../connection/database.php";
 
+            // query untuk menambkan ke database
             $sql = "INSERT INTO users (id_role, username, password, telepon, tanggal_lahir) VALUES
                       (:id_role, :username, SHA2(:password, 256), :telepon, :tanggal_lahir)";
 
@@ -53,11 +57,13 @@
         <div class="box_tengah">
             <div class="box_form_atas">
                 <div>
+                    <!-- judul -->
                     <h1 class="putih">Buat Akun Baru</h1>
                     <span>Bergabunglah sebagai Pelajar atau Pengajar</span>
                 </div>
             </div>
             <div class="box_form">
+                <!-- form daftar -->
                 <form method="POST" action="">
                     <label>USERNAME</label>
                     <input type="text" name="username" placeholder="contoh: Prabowo" value="<?= isset($errors['username']) && isset($_POST['username'])? $_POST['username']:""?>">
@@ -84,6 +90,7 @@
 
                     <button type="submit">Daftar!</button>
                 </form>
+                <!-- navigasi untuk login -->
                 <p>Sudah punya Akun? <a href="./login.php">Login di sini</a></p>
             </div>
         </div>
