@@ -2,21 +2,28 @@
     session_start();
     require "../connection/permission_expert.php";
     require "../connection/database.php";
+    require "../authentication/validasi.php";
 
     $IDtopic = $_GET['id_topic'];
     $id_user = $_SESSION['id_user'];
 
+    $errors = [];
+
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_reply"])){
         $reply = $_POST['reply'];
 
-        $sql = "INSERT INTO replys (reply, id_topic, id_user) 
-                VALUES (:reply, :id_topic, :id_user)";
-                
-        $query = $dbc -> prepare($sql); 
-        $query->bindValue(":reply", $reply);
-        $query->bindValue(":id_topic", $IDtopic);
-        $query->bindValue(":id_user", $id_user);
-        $query->execute();
+        valReply($errors, $reply);
+
+        if (empty($errors)){
+            $sql = "INSERT INTO replys (reply, id_topic, id_user) 
+                    VALUES (:reply, :id_topic, :id_user)";
+                    
+            $query = $dbc -> prepare($sql); 
+            $query->bindValue(":reply", $reply);
+            $query->bindValue(":id_topic", $IDtopic);
+            $query->bindValue(":id_user", $id_user);
+            $query->execute();
+        }
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_reply"])){
@@ -66,7 +73,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Topic</title>
+    <title>Detail Topic</title>
 </head>
 <body>
     <!-- header -->
@@ -74,7 +81,7 @@
 
     <!-- content -->
     <div class="content">
-        <div class="box_tengah">
+        <div class="box_tengah_reply">
             <a href="./dashboard_expert.php"><< kembali ke Halaman utama</a>
             <div class="box">
                 <span class="box_hijau">TOPIC</span>
@@ -86,6 +93,7 @@
                 <form action="reply.php?id_topic=<?= $IDtopic ?>" method="POST">
                     <label>Penjelasan / Jawaban Anda Sebagai Expert</label><br>
                     <textarea name="reply" placeholder="Tulis balasan..."></textarea>
+                    <span class="error"><?=$errors['reply']??""?></span><br>
                     <button type="submit" name="submit_reply">Kirim</button>
                 </form>
             </div>

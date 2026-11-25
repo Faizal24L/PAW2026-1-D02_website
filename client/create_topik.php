@@ -2,21 +2,28 @@
     session_start();
     require "../connection/permission_client.php";
     require "../connection/database.php";
+    require "../authentication/validasi.php";
+
+    $errors = [];
 
     if($_SERVER["REQUEST_METHOD"] === "POST"){
+        
         $topic = $_POST['topic'];
         $id_user = $_SESSION["id_user"];
         $id_kategori = $_POST["id_kategori"];
 
-        $sql = "INSERT INTO topics (topic, id_user, id_kategori) VALUES (:topic, :id_user, :id_kategori)";
-        $query = $dbc -> prepare($sql); 
-        $query->bindValue(":topic", $topic);
-        $query->bindValue(":id_user", $id_user);
-        $query->bindValue(":id_kategori", $id_kategori);
-        $query->execute();
+        valCreateTopic($errors, $topic);
 
-        header("Location: ../client/dashboard_client.php");
-        
+        if (empty($errors)){
+            $sql = "INSERT INTO topics (topic, id_user, id_kategori) VALUES (:topic, :id_user, :id_kategori)";
+            $query = $dbc -> prepare($sql); 
+            $query->bindValue(":topic", $topic);
+            $query->bindValue(":id_user", $id_user);
+            $query->bindValue(":id_kategori", $id_kategori);
+            $query->execute();
+
+            header("Location: ../client/dashboard_client.php");
+        }
     }
 ?>
 
@@ -26,7 +33,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Create Topict</title>
+    <title>Create Topik</title>
 </head>
 <body>
     <div class="container">
@@ -55,6 +62,7 @@
 
                         <label for="topic">DETAIL PERTANYAAN</label>
                         <textarea name="topic" id="topic"></textarea>
+                        <span class="error"><?=$errors['topic']??""?></span>
 
                         <button type="submit">Publikasi</button>
                     </form>

@@ -4,6 +4,18 @@
 		$cek = trim($field);
 		return empty($cek);
 	}
+
+    function valCreateTopic(&$errors, $field){
+        if (cekKosong($field)){
+            $errors["topic"] = "topic tidak Boleh kosong";
+        }
+    }
+    
+    function valReply(&$errors, $field){
+        if (cekKosong($field)){
+            $errors["reply"] = "Balsan tidak Boleh kosong";
+        }
+    }
     
     // validasi masukan format alfabet untuk username
     function valUsername(&$errors, $field){

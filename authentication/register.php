@@ -43,7 +43,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Login</title>
+    <title>Register</title>
 </head>
 <body>
     <!-- header -->
