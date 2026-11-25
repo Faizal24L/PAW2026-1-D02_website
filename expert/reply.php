@@ -87,7 +87,7 @@
     <!-- content -->
     <div class="content">
         <!-- navigasi -->
-        <div class="box_tengah_reply">
+        <div class="box_tengah_topik">
             <a href="./dashboard_expert.php">kembali ke Halaman utama</a>
 
             <!-- bagian penampilan topik -->

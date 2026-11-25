@@ -47,7 +47,7 @@
         <div class="content">
             <!-- navigasi -->
             <div class="box_tengah">
-                <a href="dashboard_client.php"><< Kembali ke Dashboard</a>
+                <a href="dashboard_client.php">Kembali ke Dashboard</a>
 
                 <!-- form membuat topik -->
                 <div class="box_form_atas">

@@ -64,7 +64,7 @@
             </div>
             <div class="box_form">
                 <!-- form daftar -->
-                <form method="POST" action="">
+                <form method="POST" action="register.php">
                     <label>USERNAME</label>
                     <input type="text" name="username" placeholder="contoh: Prabowo" value="<?= isset($errors['username']) && isset($_POST['username'])? $_POST['username']:""?>">
                     <span class="error"><?=$errors['username']??""?></span>
@@ -82,7 +82,7 @@
                     <span class="error"><?=$errors['tanggal_lahir']??""?></span>
 
                     
-                    <label for="id_role">PILIH ROLE:</label>
+                    <label>PILIH ROLE:</label>
                     <select name="id_role">
                         <option value="1">USER</option>
                         <option value="2">PAKAR</option>

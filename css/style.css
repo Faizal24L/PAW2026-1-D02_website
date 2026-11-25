@@ -199,7 +199,8 @@ img {
 /* hover */
 .box a:hover,
 .footer a:hover,
-.box_tengah a:hover {
+.box_tengah a:hover,
+.box_tengah_topik a:hover {
   color: #ff6b8b;
 }
 
@@ -276,21 +277,4 @@ button {
 .box_form a,
 .box_form p {
   text-align: center;
-}
-
-.box_tengah_reply {
-  width: 99%;
-  margin: 35px auto;
-  color: #14532d;
-  box-sizing: border-box;
-}
-
-.box_tengah_reply a:hover {
-  color: #ff6b8b;
-}
-
-.box_tengah_reply a {
-  color: #14532d;
-  text-decoration: none;
-  font-weight: bold;
 }
