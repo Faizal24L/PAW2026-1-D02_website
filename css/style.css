@@ -3,6 +3,7 @@
   font-family: sans-serif;
   line-height: 1.5;
 }
+
 body {
   background-color: #fff2f2;
 }
@@ -17,13 +18,18 @@ body {
   grid-template-rows: 100px auto 100px;
 }
 
-.header {
-  grid-area: header;
-  background-color: #14532d;
+.header,
+.footer {
   display: flex;
   justify-content: space-between;
+  background-color: #14532d;
+}
+
+.header {
+  grid-area: header;
   padding: 20px;
   border-bottom: 5px solid #ff6b8b;
+  align-items: center;
 }
 
 .content {
@@ -33,10 +39,7 @@ body {
 
 .footer {
   grid-area: footer;
-  background-color: #14532d;
   color: #fadadd;
-  display: flex;
-  justify-content: space-between;
   padding: 25px;
   border-top: 5px solid #ff6b8b;
 }
@@ -75,7 +78,7 @@ img {
   background-color: white;
   padding: 30px;
   border: 1px solid #ff6b8b;
-  margin: 10px 20px 10px 20px;
+  margin: 10px 20px;
 }
 
 .box_kat {
@@ -84,8 +87,9 @@ img {
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  margin: 35px 20px 35px 20px;
+  margin: 35px 20px;
 }
+
 .box_kat form {
   display: flex;
   justify-content: space-between;
@@ -104,8 +108,10 @@ img {
 }
 
 .box_tengah {
-  margin: 35px 100px 35px 100px;
+  width: 50%;
+  margin: 35px auto;
   color: #14532d;
+  box-sizing: border-box;
 }
 
 .box_tengah a {
@@ -117,6 +123,7 @@ img {
 .box_form_atas {
   display: flex;
   flex-direction: column;
+  text-align: center;
   justify-content: center;
   align-items: center;
   background-color: #14532d;
@@ -134,12 +141,19 @@ img {
   box-sizing: border-box;
 }
 
+.box_form form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* tombol dan label box */
 .box_pinktua,
 .box_pinktua a,
 .box_pinkmuda,
 .box_hijau,
 .box_putih {
-  padding: 5px 10px 5px 10px;
+  padding: 5px 10px;
   border-radius: 20px;
   font-weight: bold;
 }
@@ -160,9 +174,9 @@ img {
 
 .box_hijau,
 .box_hijau a {
-  text-decoration: none;
   background-color: #14532d;
   color: white;
+  text-decoration: none;
 }
 
 .box_putih {
@@ -170,23 +184,25 @@ img {
   color: #14532d;
 }
 
-/* hover topik */
+/* hover */
 .box a:hover,
 .footer a:hover,
 .box_tengah a:hover {
   color: #ff6b8b;
 }
+
+/* link box */
 .box a {
   color: #14532d;
   font-size: 25px;
 }
 
-/* hover header */
+/* header link */
 .header a {
   color: #fadadd;
   background-color: #14532d;
   text-decoration: none;
-  padding: 5px 10px 5px 10px;
+  padding: 5px 10px;
   margin: 5px;
 }
 
@@ -197,7 +213,7 @@ img {
   border-radius: 10px;
 }
 
-/* hover footer */
+/* footer link */
 .footer a {
   color: #fadadd;
   text-decoration: none;
@@ -209,7 +225,7 @@ select,
 option,
 textarea {
   background-color: #fdf5f6;
-  border-color: #ff6b8b;
+  border: 1px solid #ff6b8b;
   border-radius: 10px;
   padding: 10px;
   color: #14532d;
@@ -228,14 +244,25 @@ textarea {
   font-size: 20px;
 }
 
+/* button */
 button {
+  width: 100px;
+  height: 30px;
+  box-sizing: border-box;
   border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background-color: #ff6b8b;
   color: white;
-  padding: 10px 15px;
+  padding: 5px 10px;
   border-radius: 15px;
   font-size: 15px;
   cursor: pointer;
   font-weight: bold;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.box_form a,
+p {
+  text-align: center;
 }

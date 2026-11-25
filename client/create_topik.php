@@ -56,7 +56,7 @@
                         <label for="topic">DETAIL PERTANYAAN</label>
                         <textarea name="topic" id="topic"></textarea>
 
-                        <button type="submit">Publikasi Topik</button>
+                        <button type="submit">Publikasi</button>
                     </form>
                 </div>
             </div>

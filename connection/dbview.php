@@ -69,9 +69,9 @@
                     </div>
                 <?php else:?>
                     <div class="box">
-                        <small><?= $top["kategori"] ?></small><br>
+                        <small class="box_pinkmuda"><?= $top["kategori"] ?></small><br>
                         <small>oleh: @<?= $top["username"]?></small><br>
-                        <a href="../client/topic_detail.php?id_topic=<?= $top['id_topic'] ?>"><p><?= htmlspecialchars($top['topic']) ?></p></a>
+                        <a href="../client/topic_detail.php?id_topic=<?= $top['id_topic'] ?>"><?= htmlspecialchars($top['topic']) ?></a>
                     </div>
                 <?php endif;?>
             <?php endif;?>
